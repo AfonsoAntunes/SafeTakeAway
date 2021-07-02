@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import android.provider.BaseColumns
 
 class ContentProviderTakeAway : ContentProvider() {
     private var dbTakeAwayOpenHelper : DbTakeAwayOpenHelper? = null
@@ -21,7 +22,118 @@ class ContentProviderTakeAway : ContentProvider() {
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        TODO("Not yet implemented")
+        val db = dbTakeAwayOpenHelper!!.readableDatabase
+
+        return when (getUriMatcher().match(uri)) {
+            ORDER_URI -> OrderTable(db).query(
+                projection as Array<String>,
+                selection,
+                selectionArgs as Array<String>?,
+                null,
+                null,
+                sortOrder
+            )
+
+            SPECIFIC_ORDER_URI -> OrderTable(db).query(
+                projection as Array<String>,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!),
+                null,
+                null,
+                null
+            )
+
+            USER_URI -> UserTable(db).query(
+                projection as Array<String>,
+                selection,
+                selectionArgs as Array<String>?,
+                null,
+                null,
+                sortOrder
+            )
+
+            SPECIFIC_USER_URI -> UserTable(db).query(
+                projection as Array<String>,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!),
+                null,
+                null,
+                null
+            )
+
+            CITY_URI -> CityTable(db).query(
+                projection as Array<String>,
+                selection,
+                selectionArgs as Array<String>?,
+                null,
+                null,
+                sortOrder
+            )
+
+            SPECIFIC_CITY_URI -> CityTable(db).query(
+                projection as Array<String>,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!),
+                null,
+                null,
+                null
+            )
+
+            PLATES_URI -> PlatesTable(db).query(
+                projection as Array<String>,
+                selection,
+                selectionArgs as Array<String>?,
+                null,
+                null,
+                sortOrder
+            )
+
+            SPECIFIC_PLATES_URI -> PlatesTable(db).query(
+                projection as Array<String>,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!),
+                null,
+                null,
+                null
+            )
+
+            RESTAURANT_URI -> RestaurantTable(db).query(
+                projection as Array<String>,
+                selection,
+                selectionArgs as Array<String>?,
+                null,
+                null,
+                sortOrder
+            )
+
+            SPECIFIC_RESTAURANT_URI -> RestaurantTable(db).query(
+                projection as Array<String>,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!),
+                null,
+                null,
+                null
+            )
+
+            CATEGORY_URI -> CategoryTable(db).query(
+                projection as Array<String>,
+                selection,
+                selectionArgs as Array<String>?,
+                null,
+                null,
+                sortOrder
+            )
+
+            SPECIFIC_CATEGORY_URI -> CategoryTable(db).query(
+                projection as Array<String>,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!),
+                null,
+                null,
+                null
+            )
+            else -> null
+        }
     }
 
     override fun getType(uri: Uri): String? {
