@@ -369,4 +369,26 @@ class TestDatabase {
 
         db.close()
     }
+
+    @Test
+    fun getDeletePlate() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val categoryTable = getCategoryTable(db)
+        val category = Category(type = "Test")
+        category.id = insertCategory(categoryTable, category)
+
+        val restaurantTable = getRestaurantTable(db)
+        val restaurant = Restaurant(name = "Test", categoryId = category.id)
+        restaurant.id = insertRestaurant(restaurantTable, restaurant)
+
+        val platesTable = getPlatesTable(db)
+        val plate = Plates(name = "Test0",  price = 5.00, categoryId = category.id, restaurantId = restaurant.id)
+        plate.id = insertPlates(platesTable, plate)
+
+        val deletedData = platesTable.delete("${BaseColumns._ID}=?", arrayOf(plate.id.toString()))
+        assertEquals(1, deletedData)
+
+        db.close()
+    }
 }
