@@ -155,7 +155,22 @@ class ContentProviderTakeAway : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        TODO("Not yet implemented")
+        val db = dbTakeAwayOpenHelper!!.writableDatabase
+
+        val id = when (getUriMatcher().match(uri)) {
+            ORDER_URI -> OrderTable(db).insert(values!!)
+            USER_URI -> UserTable(db).insert(values!!)
+            CITY_URI -> CityTable(db).insert(values!!)
+            PLATES_URI -> PlatesTable(db).insert(values!!)
+            RESTAURANT_URI -> RestaurantTable(db).insert(values!!)
+            CATEGORY_URI -> CategoryTable(db).insert(values!!)
+            else -> null
+        }
+
+        if (id == -1L)
+            return null
+
+        return Uri.withAppendedPath(uri, toString())
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
