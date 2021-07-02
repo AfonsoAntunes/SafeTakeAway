@@ -514,4 +514,22 @@ class TestDatabase {
         assertEquals(user, userId)
         db.close()
     }
+
+    @Test
+    fun getDeleteUser() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val cityTable = getCityTable(db)
+        val city = City(city = "Test1")
+        city.id = insertCity(cityTable, city)
+
+        val userTable = getUserTable(db)
+        val user = User(name = "Afonso Antunes", gender = "Masculino", address = "Rua Francisco Sá Carneiro", email = "afonsoantunes@mail.com", phoneNumber = "969696969", cityId = city.id)
+        user.id = insertUser(userTable, user)
+
+        val deletedData = userTable.delete("${BaseColumns._ID}=?", arrayOf(user.id.toString()))
+        assertEquals(1, deletedData)
+
+        db.close()
+    }
 }
