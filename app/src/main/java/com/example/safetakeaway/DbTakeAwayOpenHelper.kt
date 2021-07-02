@@ -8,6 +8,7 @@ class DbTakeAwayOpenHelper (context: Context?) : SQLiteOpenHelper(context, DATAB
     override fun onCreate(db: SQLiteDatabase?) {
         if (db != null) {
             RestaurantTable(db).createTable()
+            PlatesTable(db).createTable()
         }
     }
 
