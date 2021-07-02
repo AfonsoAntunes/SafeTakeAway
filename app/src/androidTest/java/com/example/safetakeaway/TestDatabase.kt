@@ -208,4 +208,18 @@ class TestDatabase {
         assertEquals(category, categoryId)
         db.close()
     }
+
+    @Test
+    fun getDeleteCategory() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val categoryTable = getCategoryTable(db)
+        val category = Category(type = "Test")
+        category.id = insertCategory(categoryTable, category)
+
+        val deletedData = categoryTable.delete("${BaseColumns._ID}=?", arrayOf(category.id.toString()))
+        assertEquals(1, deletedData)
+
+        db.close()
+    }
 }
