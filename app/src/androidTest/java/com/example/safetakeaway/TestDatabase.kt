@@ -175,4 +175,18 @@ class TestDatabase {
         assertEquals(category, categoryId)
         db.close()
     }
+
+    @Test
+    fun getReadCategory() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+        val categoryTable = getCategoryTable(db)
+
+        val category = Category(type = "Italiana")
+        category.id = insertCategory(categoryTable, category)
+
+        val categoryId = getCategoryDB(categoryTable, category.id)
+
+        assertEquals(category, categoryId)
+        db.close()
+    }
 }
