@@ -174,7 +174,42 @@ class ContentProviderTakeAway : ContentProvider() {
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val db = dbTakeAwayOpenHelper!!.writableDatabase
+
+        return when (getUriMatcher().match(uri)) {
+
+            SPECIFIC_ORDER_URI -> OrderTable(db).delete(
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            SPECIFIC_USER_URI -> UserTable(db).delete(
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            SPECIFIC_CITY_URI -> CityTable(db).delete(
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            SPECIFIC_PLATES_URI -> PlatesTable(db).delete(
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            SPECIFIC_RESTAURANT_URI -> RestaurantTable(db).delete(
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            SPECIFIC_CATEGORY_URI -> CategoryTable(db).delete(
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            else -> 0
+        }
     }
 
     override fun update(
