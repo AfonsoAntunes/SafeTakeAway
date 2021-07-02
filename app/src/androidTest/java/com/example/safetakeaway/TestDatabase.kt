@@ -10,6 +10,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
+import java.util.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -26,6 +27,7 @@ class TestDatabase {
     private fun getPlatesTable(db: SQLiteDatabase) = PlatesTable(db)
     private fun getCityTable(db: SQLiteDatabase) = CityTable(db)
     private fun getUserTable(db: SQLiteDatabase) = UserTable(db)
+    private fun getOrderTable(db: SQLiteDatabase) = OrderTable(db)
 
     private fun insertRestaurant(restaurantTable: RestaurantTable, restaurant: Restaurant): Long {
         val id = restaurantTable.insert(restaurant.toContentValues())
@@ -530,6 +532,40 @@ class TestDatabase {
         val deletedData = userTable.delete("${BaseColumns._ID}=?", arrayOf(user.id.toString()))
         assertEquals(1, deletedData)
 
+        db.close()
+    }
+
+    @Test
+    fun getCreateOrder() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val categoryTable = getCategoryTable(db)
+        val category = Category(type = "Árabe")
+        category.id = insertCategory(categoryTable, category)
+
+        val restaurantTable = getRestaurantTable(db)
+        val restaurant = Restaurant(name = "Por do Sol", categoryId = category.id)
+        restaurant.id = insertRestaurant(restaurantTable, restaurant)
+
+        val platesTable = getPlatesTable(db)
+        val plate = Plates(name = "Durum", price = 5.99, categoryId = category.id, restaurantId = restaurant.id)
+        plate.id = insertPlates(platesTable, plate)
+
+        val cityTable = getCityTable(db)
+        val city = City(city = "Guarda")
+        city.id = insertCity(cityTable, city)
+
+        val userTable = getUserTable(db)
+        val user = User(name = "Joaquim Costa", gender = "Masculino", address = "Quinta do Pina", email = "joaquimcosta@mail.com", phoneNumber = "969696969", cityId = city.id)
+        user.id = insertUser(userTable, user)
+
+        val orderTable = getOrderTable(db)
+        val order = Order(totalPrice = 17.49, date = Date(2020-8-2), paymentMethod = "Dinheiro", restaurantId = restaurant.id, platesId = plate.id, userId = user.id)
+        order.id = insertOrder(orderTable, order)
+
+        val orderId = getOrderDB(orderTable, order.id)
+
+        assertEquals(order, orderId)
         db.close()
     }
 }
