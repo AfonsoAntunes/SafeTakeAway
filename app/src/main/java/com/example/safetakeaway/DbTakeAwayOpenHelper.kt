@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class DbTakeAwayOpenHelper (context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase?) {
-
+        if (db != null) {
+            RestaurantTable(db).createTable()
+        }
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
