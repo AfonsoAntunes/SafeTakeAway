@@ -189,4 +189,23 @@ class TestDatabase {
         assertEquals(category, categoryId)
         db.close()
     }
+
+    @Test
+    fun getUpdateCategory() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val categoryTable = getCategoryTable(db)
+        val category = Category(type = "Portuguesa")
+        category.id = insertCategory(categoryTable, category)
+
+        category.type = "Brasileira"
+
+        val changedData = categoryTable.update(category.toContentValues(), "${BaseColumns._ID}=?", arrayOf(category.id.toString()))
+        assertEquals(1, changedData)
+
+        val categoryId = getCategoryDB(categoryTable, category.id)
+
+        assertEquals(category, categoryId)
+        db.close()
+    }
 }
