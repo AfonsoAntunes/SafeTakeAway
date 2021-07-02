@@ -241,4 +241,22 @@ class TestDatabase {
         assertEquals(restaurant, restaurantId)
         db.close()
     }
+
+    @Test
+    fun getReadRestaurant() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val categoryTable = getCategoryTable(db)
+        val category = Category(type = "Italiana")
+        category.id = insertCategory(categoryTable, category)
+
+        val restaurantTable = getRestaurantTable(db)
+        val restaurant = Restaurant(name = "Central 2", categoryId = category.id)
+        restaurant.id = insertRestaurant(restaurantTable, restaurant)
+
+        val restaurantId = getRestaurantDB(restaurantTable, restaurant.id)
+
+        assertEquals(restaurant, restaurantId)
+        db.close()
+    }
 }
