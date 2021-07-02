@@ -602,4 +602,40 @@ class TestDatabase {
         assertEquals(order, orderId)
         db.close()
     }
+
+    @Test
+    fun getUpdateOrder() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val categoryTable = getCategoryTable(db)
+        val category = Category(type = "Portuguesa")
+        category.id = insertCategory(categoryTable, category)
+
+        val restaurantTable = getRestaurantTable(db)
+        val restaurant = Restaurant(name = "Sardinha", categoryId = category.id)
+        restaurant.id = insertRestaurant(restaurantTable, restaurant)
+
+        val platesTable = getPlatesTable(db)
+        val plate = Plates(name = "Sardinha Assada", price = 9.99, categoryId = category.id, restaurantId = restaurant.id)
+        plate.id = insertPlates(platesTable, plate)
+
+        val cityTable = getCityTable(db)
+        val city = City(city = "Cerdeira")
+        city.id = insertCity(cityTable, city)
+
+        val userTable = getUserTable(db)
+        val user = User(name = "Fátima Santiago", gender = "Feminino", address = "Cerdeira", email = "fatimasantiago@mail.com", phoneNumber = "909090909", cityId = city.id)
+        user.id = insertUser(userTable, user)
+
+        val orderTable = getOrderTable(db)
+        val order = Order(totalPrice = 30.00, date = Date(2021-6-20), paymentMethod = "MB Way", restaurantId = restaurant.id, platesId = plate.id, userId = user.id)
+        order.id = insertOrder(orderTable, order)
+
+        order.paymentMethod = "Cartão de Crédito"
+
+        val changedData = orderTable.update(order.toContentValues(), "${BaseColumns._ID}=?", arrayOf(order.id.toString()))
+        assertEquals(1, changedData)
+
+        db.close()
+    }
 }
