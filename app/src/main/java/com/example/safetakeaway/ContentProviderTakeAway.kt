@@ -289,6 +289,13 @@ class ContentProviderTakeAway : ContentProvider() {
 
         private val BASE_ADDRESS = Uri.parse("content://$AUTHORITY")
 
+        public val ORDER_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, ORDER)
+        public val USER_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, USER)
+        public val CITY_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, CITY)
+        public val PLATES_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, PLATES)
+        public val RESTAURANT_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, RESTAURANT)
+        public val CATEGORY_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, CATEGORY)
+
         private fun getUriMatcher() : UriMatcher {
             val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
