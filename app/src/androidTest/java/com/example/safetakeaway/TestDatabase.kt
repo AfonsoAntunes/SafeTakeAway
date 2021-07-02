@@ -1,5 +1,6 @@
 package com.example.safetakeaway
 
+import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +20,8 @@ import org.junit.Before
 class TestDatabase {
     private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
     private fun getDbTakeAwayOpenHelper() = DbTakeAwayOpenHelper(getAppContext())
+
+    private fun getCategoryTable(db: SQLiteDatabase) = CategoryTable(db)
 
     private fun insertRestaurant(restaurantTable: RestaurantTable, restaurant: Restaurant): Long {
         val id = restaurantTable.insert(restaurant.toContentValues())
@@ -156,6 +159,20 @@ class TestDatabase {
         val db = getDbTakeAwayOpenHelper().readableDatabase
         assert(db.isOpen)
 
+        db.close()
+    }
+
+    @Test
+    fun getCreateCategory() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+        val categoryTable = getCategoryTable(db)
+
+        val category = Category(type = "Italiana")
+        category.id = insertCategory(categoryTable, category)
+
+        val categoryId = getCategoryDB(categoryTable, category.id)
+
+        assertEquals(category, categoryId)
         db.close()
     }
 }
