@@ -1,5 +1,6 @@
 package com.example.safetakeaway
 
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -53,6 +54,96 @@ class TestDatabase {
         val id = cityTable.insert(city.toContentValues())
         assertNotEquals(-1, id)
         return id
+    }
+
+    private fun getRestaurantDB(
+        restaurantTable: RestaurantTable, id: Long): Restaurant {
+        val cursor = restaurantTable.query(
+            RestaurantTable.ALL_FIELD,
+            "${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null,
+            null,
+            null
+        )
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+        return Restaurant.fromCursor(cursor)
+    }
+
+    private fun getPlatesDB(
+        platesTable: PlatesTable, id: Long): Plates {
+        val cursor = platesTable.query(
+            PlatesTable.ALL_FIELD,
+            "${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null,
+            null,
+            null
+        )
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+        return Plates.fromCursor(cursor)
+    }
+
+    private fun getOrderDB(
+        orderTable: OrderTable, id: Long): Order {
+        val cursor = orderTable.query(
+            OrderTable.ALL_FIELD,
+            "${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null,
+            null,
+            null
+        )
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+        return Order.fromCursor(cursor)
+    }
+
+    private fun getUserDB(
+        userTable: UserTable, id: Long): User {
+        val cursor = userTable.query(
+            UserTable.ALL_FIELD,
+            "${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null,
+            null,
+            null
+        )
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+        return User.fromCursor(cursor)
+    }
+
+    private fun getCategoryDB(
+        categoryTable: CategoryTable, id: Long): Category {
+        val cursor = categoryTable.query(
+            CategoryTable.ALL_FIELD,
+            "${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null,
+            null,
+            null
+        )
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+        return Category.fromCursor(cursor)
+    }
+
+    private fun getCityDB(
+        cityTable: CityTable, id: Long): City {
+        val cursor = cityTable.query(
+            CityTable.ALL_FIELD,
+            "${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null,
+            null,
+            null
+        )
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+        return City.fromCursor(cursor)
     }
 
     @Before
