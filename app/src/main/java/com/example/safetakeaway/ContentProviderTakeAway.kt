@@ -25,7 +25,21 @@ class ContentProviderTakeAway : ContentProvider() {
     }
 
     override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
+        return when (getUriMatcher().match(uri)) {
+            ORDER_URI -> "$MULTIPLE_ITEMS/$ORDER"
+            SPECIFIC_ORDER_URI -> "$SINGLE_ITEM/$ORDER"
+            USER_URI -> "$MULTIPLE_ITEMS/$USER"
+            SPECIFIC_USER_URI -> "$SINGLE_ITEM/$USER"
+            CITY_URI -> "$MULTIPLE_ITEMS/$CITY"
+            SPECIFIC_CITY_URI -> "$SINGLE_ITEM/$CITY"
+            PLATES_URI -> "$MULTIPLE_ITEMS/$PLATES"
+            SPECIFIC_PLATES_URI -> "$SINGLE_ITEM/$PLATES"
+            RESTAURANT_URI -> "$MULTIPLE_ITEMS/$RESTAURANT"
+            SPECIFIC_RESTAURANT_URI -> "$SINGLE_ITEM/$RESTAURANT"
+            CATEGORY_URI -> "$MULTIPLE_ITEMS/$CATEGORY"
+            SPECIFIC_CATEGORY_URI -> "$SINGLE_ITEM/$CATEGORY"
+            else -> null
+        }
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
@@ -67,6 +81,9 @@ class ContentProviderTakeAway : ContentProvider() {
         private const val SPECIFIC_RESTAURANT_URI = 501;
         private const val CATEGORY_URI = 600;
         private const val SPECIFIC_CATEGORY_URI = 601;
+
+        private const val MULTIPLE_ITEMS = "vnd.android.cursor.dir"
+        private const val SINGLE_ITEM = "vnd.android.cursor.item"
 
         private val BASE_ADDRESS = Uri.parse("content://$AUTHORITY")
 
