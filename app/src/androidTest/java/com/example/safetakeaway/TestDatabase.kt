@@ -638,4 +638,38 @@ class TestDatabase {
 
         db.close()
     }
+
+    @Test
+    fun getDeleteOrder() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val categoryTable = getCategoryTable(db)
+        val category = Category(type = "Test")
+        category.id = insertCategory(categoryTable, category)
+
+        val restaurantTable = getRestaurantTable(db)
+        val restaurant = Restaurant(name = "Test", categoryId = category.id)
+        restaurant.id = insertRestaurant(restaurantTable, restaurant)
+
+        val platesTable = getPlatesTable(db)
+        val plate = Plates(name = "Test0", price = 5.00, categoryId = category.id, restaurantId = restaurant.id)
+        plate.id = insertPlates(platesTable, plate)
+
+        val cityTable = getCityTable(db)
+        val city = City(city = "Test1")
+        city.id = insertCity(cityTable, city)
+
+        val userTable = getUserTable(db)
+        val user = User(name = "Test1", gender = "Other", address = "Test1", email = "test2021@mail.com", phoneNumber = "100100100", cityId = city.id)
+        user.id = insertUser(userTable, user)
+
+        val orderTable = getOrderTable(db)
+        val order = Order(totalPrice = 10.00, date = Date(2021-7-9), paymentMethod = "Test2", restaurantId = restaurant.id, platesId = plate.id, userId = user.id)
+        order.id = insertOrder(orderTable, order)
+
+        val deletedData = orderTable.delete("${BaseColumns._ID}=?", arrayOf(order.id.toString()))
+        assertEquals(1, deletedData)
+
+        db.close()
+    }
 }
