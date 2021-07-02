@@ -10,6 +10,7 @@ class DbTakeAwayOpenHelper (context: Context?) : SQLiteOpenHelper(context, DATAB
             RestaurantTable(db).createTable()
             PlatesTable(db).createTable()
             OrderTable(db).createTable()
+            UserTable(db).createTable()
         }
     }
 
