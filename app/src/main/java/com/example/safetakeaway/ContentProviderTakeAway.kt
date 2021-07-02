@@ -271,18 +271,18 @@ class ContentProviderTakeAway : ContentProvider() {
         private const val RESTAURANT = "restaurant"
         private const val CATEGORY = "category"
 
-        private const val ORDER_URI = 100;
-        private const val SPECIFIC_ORDER_URI = 101;
-        private const val USER_URI = 200;
-        private const val SPECIFIC_USER_URI = 201;
-        private const val CITY_URI = 300;
-        private const val SPECIFIC_CITY_URI = 301;
-        private const val PLATES_URI = 400;
-        private const val SPECIFIC_PLATES_URI = 401;
-        private const val RESTAURANT_URI = 500;
-        private const val SPECIFIC_RESTAURANT_URI = 501;
-        private const val CATEGORY_URI = 600;
-        private const val SPECIFIC_CATEGORY_URI = 601;
+        private const val ORDER_URI = 100
+        private const val SPECIFIC_ORDER_URI = 101
+        private const val USER_URI = 200
+        private const val SPECIFIC_USER_URI = 201
+        private const val CITY_URI = 300
+        private const val SPECIFIC_CITY_URI = 301
+        private const val PLATES_URI = 400
+        private const val SPECIFIC_PLATES_URI = 401
+        private const val RESTAURANT_URI = 50
+        private const val SPECIFIC_RESTAURANT_URI = 501
+        private const val CATEGORY_URI = 600
+        private const val SPECIFIC_CATEGORY_URI = 601
 
         private const val MULTIPLE_ITEMS = "vnd.android.cursor.dir"
         private const val SINGLE_ITEM = "vnd.android.cursor.item"
