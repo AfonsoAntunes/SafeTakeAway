@@ -259,4 +259,27 @@ class TestDatabase {
         assertEquals(restaurant, restaurantId)
         db.close()
     }
+
+    @Test
+    fun getUpdateRestaurant() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val categoryTable = getCategoryTable(db)
+        val category = Category(type = "Portuguesa")
+        category.id = insertCategory(categoryTable, category)
+
+        val restaurantTable = getRestaurantTable(db)
+        val restaurant = Restaurant(name = "Sardinha", categoryId = category.id)
+        restaurant.id = insertRestaurant(restaurantTable, restaurant)
+
+        restaurant.name = "Videira"
+
+        val changedData = restaurantTable.update(restaurant.toContentValues(), "${BaseColumns._ID}=?", arrayOf(restaurant.id.toString()))
+        assertEquals(1, changedData)
+
+        val restaurantId = getRestaurantDB(restaurantTable, restaurant.id)
+
+        assertEquals(restaurant, restaurantId)
+        db.close()
+    }
 }
