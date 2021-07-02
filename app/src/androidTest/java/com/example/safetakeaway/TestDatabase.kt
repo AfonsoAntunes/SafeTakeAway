@@ -406,4 +406,18 @@ class TestDatabase {
         assertEquals(city, cityId)
         db.close()
     }
+
+    @Test
+    fun getReadCity() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val cityTable = getCityTable(db)
+        val city = City(city = "Guarda")
+        city.id = insertCity(cityTable, city)
+
+        val cityId = getCityDB(cityTable, city.id)
+
+        assertEquals(city, cityId)
+        db.close()
+    }
 }
