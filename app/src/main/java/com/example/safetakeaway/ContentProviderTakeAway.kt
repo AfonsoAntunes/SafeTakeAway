@@ -183,7 +183,47 @@ class ContentProviderTakeAway : ContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?
     ): Int {
-        TODO("Not yet implemented")
+        val db = dbTakeAwayOpenHelper!!.writableDatabase
+
+        return when (getUriMatcher().match(uri)) {
+            SPECIFIC_ORDER_URI -> OrderTable(db).update(
+                values!!,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            SPECIFIC_USER_URI -> UserTable(db).update(
+                values!!,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            SPECIFIC_CITY_URI -> CityTable(db).update(
+                values!!,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            SPECIFIC_PLATES_URI -> PlatesTable(db).update(
+                values!!,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            SPECIFIC_RESTAURANT_URI -> RestaurantTable(db).update(
+                values!!,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            SPECIFIC_CATEGORY_URI -> CategoryTable(db).update(
+                values!!,
+                "${BaseColumns._ID}=?",
+                arrayOf(uri.lastPathSegment!!)
+            )
+
+            else -> 0
+        }
     }
 
     companion object {
