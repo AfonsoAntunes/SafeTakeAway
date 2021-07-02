@@ -472,4 +472,22 @@ class TestDatabase {
         assertEquals(user, userId)
         db.close()
     }
+
+    @Test
+    fun getReadUser() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val cityTable = getCityTable(db)
+        val city = City(city = "Viseu")
+        city.id = insertCity(cityTable, city)
+
+        val userTable = getUserTable(db)
+        val user = User(name = "Afonso Antunes", gender = "Masculino", address = "Rua Francisco Sá Carneiro", email = "afonsoantunes@mail.com", phoneNumber = "969696969", cityId = city.id)
+        user.id = insertUser(userTable, user)
+
+        val userId = getUserDB(userTable, user.id)
+
+        assertEquals(user, userId)
+        db.close()
+    }
 }
