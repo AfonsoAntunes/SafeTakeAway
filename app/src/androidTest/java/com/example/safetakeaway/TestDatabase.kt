@@ -420,4 +420,23 @@ class TestDatabase {
         assertEquals(city, cityId)
         db.close()
     }
+
+    @Test
+    fun getUpdateCity() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val cityTable = getCityTable(db)
+        val city = City(city = "Guarda")
+        city.id = insertCity(cityTable, city)
+
+        city.city = "Coimbra"
+
+        val changedData = cityTable.update(city.toContentValues(), "${BaseColumns._ID}=?", arrayOf(city.id.toString()))
+        assertEquals(1, changedData)
+
+        val cityId = getCityDB(cityTable, city.id)
+
+        assertEquals(city, cityId)
+        db.close()
+    }
 }
