@@ -568,4 +568,38 @@ class TestDatabase {
         assertEquals(order, orderId)
         db.close()
     }
+
+    @Test
+    fun getReadOrder() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val categoryTable = getCategoryTable(db)
+        val category = Category(type = "Árabe")
+        category.id = insertCategory(categoryTable, category)
+
+        val restaurantTable = getRestaurantTable(db)
+        val restaurant = Restaurant(name = "S. Vicente", categoryId = category.id)
+        restaurant.id = insertRestaurant(restaurantTable, restaurant)
+
+        val platesTable = getPlatesTable(db)
+        val plate = Plates(name = "Box", price = 3.49, categoryId = category.id, restaurantId = restaurant.id)
+        plate.id = insertPlates(platesTable, plate)
+
+        val cityTable = getCityTable(db)
+        val city = City(city = "Vila Cortez do Mondego")
+        city.id = insertCity(cityTable, city)
+
+        val userTable = getUserTable(db)
+        val user = User(name = "Carlos Domingos", gender = "Masculino", address = "Vila Cortez do Mondego", email = "carlosdomingos@mail.com", phoneNumber = "929292929", cityId = city.id)
+        user.id = insertUser(userTable, user)
+
+        val orderTable = getOrderTable(db)
+        val order = Order(totalPrice = 17.49, date = Date(2020-10-10), paymentMethod = "Dinheiro", restaurantId = restaurant.id, platesId = plate.id, userId = user.id)
+        order.id = insertOrder(orderTable, order)
+
+        val orderId = getOrderDB(orderTable, order.id)
+
+        assertEquals(order, orderId)
+        db.close()
+    }
 }
