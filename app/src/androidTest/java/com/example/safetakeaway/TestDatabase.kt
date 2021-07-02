@@ -439,4 +439,18 @@ class TestDatabase {
         assertEquals(city, cityId)
         db.close()
     }
+
+    @Test
+    fun getDeleteCity() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val cityTable = getCityTable(db)
+        val city = City(city = "Test")
+        city.id = insertCity(cityTable, city)
+
+        val deletedData = cityTable.delete("${BaseColumns._ID}=?", arrayOf(city.id.toString()))
+        assertEquals(1, deletedData)
+
+        db.close()
+    }
 }
