@@ -24,6 +24,7 @@ class TestDatabase {
     private fun getCategoryTable(db: SQLiteDatabase) = CategoryTable(db)
     private fun getRestaurantTable(db: SQLiteDatabase) = RestaurantTable(db)
     private fun getPlatesTable(db: SQLiteDatabase) = PlatesTable(db)
+    private fun getCityTable(db: SQLiteDatabase) = CityTable(db)
 
     private fun insertRestaurant(restaurantTable: RestaurantTable, restaurant: Restaurant): Long {
         val id = restaurantTable.insert(restaurant.toContentValues())
@@ -389,6 +390,20 @@ class TestDatabase {
         val deletedData = platesTable.delete("${BaseColumns._ID}=?", arrayOf(plate.id.toString()))
         assertEquals(1, deletedData)
 
+        db.close()
+    }
+
+    @Test
+    fun getCreateCity() {
+        val db = getDbTakeAwayOpenHelper().writableDatabase
+
+        val cityTable = getCityTable(db)
+        val city = City(city = "Guarda")
+        city.id = insertCity(cityTable, city)
+
+        val cityId = getCityDB(cityTable, city.id)
+
+        assertEquals(city, cityId)
         db.close()
     }
 }
