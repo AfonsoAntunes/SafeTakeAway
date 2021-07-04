@@ -12,4 +12,7 @@
     <string name="restaurant_name">Restaurant Name</string>
     <string name="name">Telepizza</string>
     <string name="category">Italiana</string>
+    <string name="new_restaurant_action">New Restaurant</string>
+    <string name="edit_restaurant_action">Edit Restaurant</string>
+    <string name="delete_restaurant_action">Delete Restaurant</string>
 </resources>

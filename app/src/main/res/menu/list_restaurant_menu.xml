@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/new_restaurant_action"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/new_restaurant_action"
+        tools:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/edit_restaurant_action"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/edit_restaurant_action"
+        tools:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/delete_restaurant_action"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/delete_restaurant_action"
+        tools:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/settings_action"
+        android:title="@string/action_settings"
+        tools:orderInCategory="100"
+        tools:showAsAction="never" />
+</menu>
