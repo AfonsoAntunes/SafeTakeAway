@@ -31,6 +31,23 @@ class AdapterOrder : RecyclerView.Adapter<ViewHolderOrder>() {
             itemView.setOnClickListener(this)
         }
 
+        fun updateOrder(order: Order) {
+            this.order = order
+
+            val totalPrice = order.totalPrice
+            val date = order.date
+            val restaurantId = order.restaurantId.toString()
+            val platesId = order.platesId.toString()
+            val userId = order.userId.toString()
+
+            textViewTotalPrice.text = "$totalPrice"
+            textViewDate.text = "$date"
+            textViewPaymentMethod.text = order.paymentMethod
+            textViewRestaurantId.text = "Restaurant ID: $restaurantId"
+            textViewPlatesId.text = "Plate ID: $platesId"
+            textViewUserId.text = "User ID: $userId"
+        }
+
         override fun onClick(v: View?) {
             selected?.desSelected()
             select()
@@ -60,7 +77,8 @@ class AdapterOrder : RecyclerView.Adapter<ViewHolderOrder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolderOrder, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.updateOrder(Order.fromCursor(cursor!!))
     }
 
     override fun getItemCount(): Int {
