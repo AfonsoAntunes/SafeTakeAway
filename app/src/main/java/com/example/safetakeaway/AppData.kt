@@ -7,6 +7,6 @@ class AppData {
         lateinit var activity: MainActivity
         lateinit var fragment: Fragment
 
-        var selectedRestaurant : Restaurant? = null
+        var selectedOrder : Order? = null
     }
 }
