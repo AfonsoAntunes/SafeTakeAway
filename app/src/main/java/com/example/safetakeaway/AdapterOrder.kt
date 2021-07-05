@@ -61,6 +61,6 @@ class AdapterOrder : RecyclerView.Adapter<ViewHolderOrder>() {
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return cursor?.count ?: 0
     }
 }
