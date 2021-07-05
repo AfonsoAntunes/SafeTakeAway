@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safetakeaway.AdapterOrder.ViewHolderOrder
+import com.example.safetakeaway.AppData.Companion.fragment
 
 class AdapterOrder : RecyclerView.Adapter<ViewHolderOrder>() {
     var cursor: Cursor? = null
@@ -53,7 +54,9 @@ class AdapterOrder : RecyclerView.Adapter<ViewHolderOrder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderOrder {
-        TODO("Not yet implemented")
+        val orderItem = fragment.layoutInflater.inflate(R.layout.order_item, parent, false)
+
+        return ViewHolderOrder(orderItem)
     }
 
     override fun onBindViewHolder(holder: ViewHolderOrder, position: Int) {
