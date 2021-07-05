@@ -1,17 +1,21 @@
 package com.example.safetakeaway
 
+import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
+import androidx.loader.content.Loader
 import com.example.safetakeaway.databinding.ListOrderFragmentBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class ListOrderFragment : Fragment() {
+class ListOrderFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private var _binding: ListOrderFragmentBinding? = null
 
@@ -37,6 +41,8 @@ class ListOrderFragment : Fragment() {
         /* binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         } */
+
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_MANAGER_ORDER, null, this)
     }
 
     fun processMenuOption(item: MenuItem): Boolean {
@@ -46,5 +52,28 @@ class ListOrderFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
+        return CursorLoader(
+            requireContext(),
+            ContentProviderTakeAway.ORDER_ADDRESS,
+            OrderTable.ALL_FIELD,
+            null,
+            null,
+            OrderTable.USER_ID
+        )
+    }
+
+    override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLoaderReset(loader: Loader<Cursor>) {
+        TODO("Not yet implemented")
+    }
+
+    companion object {
+        const val ID_LOADER_MANAGER_ORDER = 0
     }
 }
