@@ -1,11 +1,12 @@
 package com.example.safetakeaway
 
+import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safetakeaway.AdapterOrder.ViewHolderOrder
 
-class AdapterOrder : RecyclerView.Adapter<ViewHolderOrder>() {
+class AdapterOrder (var cursor : Cursor? = null) : RecyclerView.Adapter<ViewHolderOrder>() {
     class ViewHolderOrder (itemView : View) : RecyclerView.ViewHolder(itemView) {
 
     }
