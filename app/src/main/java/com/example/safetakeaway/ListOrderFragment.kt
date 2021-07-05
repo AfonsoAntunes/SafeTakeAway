@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.safetakeaway.databinding.ListOrderFragmentBinding
 
 /**
@@ -18,6 +20,7 @@ import com.example.safetakeaway.databinding.ListOrderFragmentBinding
 class ListOrderFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private var _binding: ListOrderFragmentBinding? = null
+    private var adapterOrder : AdapterOrder? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -37,6 +40,11 @@ class ListOrderFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val recycleViewOrder = view.findViewById<RecyclerView>(R.id.recyclerViewOrder)
+        adapterOrder = AdapterOrder()
+        recycleViewOrder.adapter = adapterOrder
+        recycleViewOrder.layoutManager = LinearLayoutManager(requireContext())
 
         /* binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
