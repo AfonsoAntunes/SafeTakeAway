@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.safetakeaway.ListRestaurantFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/list_restaurant_fragment">
+        android:name="com.example.safetakeaway.ListOrderFragment"
+        android:label="@string/list_order"
+        tools:layout="@layout/list_order_fragment">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"

@@ -1,7 +1,6 @@
 package com.example.safetakeaway
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var menu: Menu
 
-    var atualMenu = R.menu.list_restaurant_menu
+    var atualMenu = R.menu.list_order_menu
         set(value) {
             field = value
             invalidateOptionsMenu()
@@ -46,11 +45,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.list_restaurant_menu, menu)
+        menuInflater.inflate(R.menu.list_order_menu, menu)
         this.menu = menu
 
-        if (atualMenu == R.menu.list_restaurant_menu) {
-            updateMenuListRestaurant(false)
+        if (atualMenu == R.menu.list_order_menu) {
+            updateMenuListOrder(false)
         }
         return true
     }
@@ -66,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             else -> when (atualMenu) {
-                R.menu.list_restaurant_menu -> (AppData.fragment as ListRestaurantFragment).processMenuOption(item)
+                R.menu.list_order_menu -> (AppData.fragment as ListOrderFragment).processMenuOption(item)
                 else -> false
             }
         }
@@ -79,8 +78,8 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    fun updateMenuListRestaurant(seeButtonsEditDelete : Boolean) {
-        menu.findItem(R.id.edit_restaurant_action).setVisible(seeButtonsEditDelete)
-        menu.findItem(R.id.delete_restaurant_action).setVisible(seeButtonsEditDelete)
+    fun updateMenuListOrder(seeButtonsEditDelete : Boolean) {
+        menu.findItem(R.id.edit_order_action).setVisible(seeButtonsEditDelete)
+        menu.findItem(R.id.delete_order_action).setVisible(seeButtonsEditDelete)
     }
 }

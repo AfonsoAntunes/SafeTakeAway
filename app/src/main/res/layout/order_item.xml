@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/order_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTotalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/total_price"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/date"
+        app:layout_constraintStart_toStartOf="@+id/textViewTotalPrice"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalPrice" />
+
+    <TextView
+        android:id="@+id/textViewPaymentMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/payment_method"
+        app:layout_constraintStart_toStartOf="@+id/textViewDate"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+
+    <TextView
+        android:id="@+id/textViewRestaurantId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/restaurant_id"
+        app:layout_constraintStart_toStartOf="@+id/textViewPaymentMethod"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPaymentMethod" />
+
+    <TextView
+        android:id="@+id/textViewPlatesId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/plates_id"
+        app:layout_constraintStart_toStartOf="@+id/textViewRestaurantId"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantId" />
+
+    <TextView
+        android:id="@+id/textViewUserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/user_id"
+        app:layout_constraintStart_toStartOf="@+id/textViewPlatesId"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlatesId" />
+</androidx.constraintlayout.widget.ConstraintLayout>

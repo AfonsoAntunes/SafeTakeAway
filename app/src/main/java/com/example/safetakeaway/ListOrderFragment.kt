@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.example.safetakeaway.databinding.ListRestaurantFragmentBinding
+import com.example.safetakeaway.databinding.ListOrderFragmentBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class ListRestaurantFragment : Fragment() {
+class ListOrderFragment : Fragment() {
 
-    private var _binding: ListRestaurantFragmentBinding? = null
+    private var _binding: ListOrderFragmentBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,9 +24,9 @@ class ListRestaurantFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         AppData.fragment = this
-        (activity as MainActivity).atualMenu = R.menu.list_restaurant_menu
+        (activity as MainActivity).atualMenu = R.menu.list_order_menu
 
-        _binding = ListRestaurantFragmentBinding.inflate(inflater, container, false)
+        _binding = ListOrderFragmentBinding.inflate(inflater, container, false)
         return binding.root
 
     }
