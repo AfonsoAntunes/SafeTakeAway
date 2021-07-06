@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.provider.BaseColumns
 import java.util.*
 
-data class Order (var id: Long = -1, var totalPrice: Double, var date: Date, var paymentMethod: String, var restaurantId: Long, var platesId: Long, var userId: Long) {
+data class Order (var id: Long = -1, var totalPrice: Double, var date: Date, var paymentMethod: String, var restaurantId: Long, var platesId: Long, var userId: Long, /* var userName: String? = null */) {
     fun toContentValues(): ContentValues {
         val values = ContentValues().apply {
             put(OrderTable.TOTAL_PRICE, totalPrice)
@@ -27,6 +27,7 @@ data class Order (var id: Long = -1, var totalPrice: Double, var date: Date, var
             val colRestaurantId = cursor.getColumnIndex(OrderTable.RESTAURANT_ID)
             val colPlatesId = cursor.getColumnIndex(OrderTable.PLATES_ID)
             val colUserId = cursor.getColumnIndex(OrderTable.USER_ID)
+            // val colUserName = cursor.getColumnIndex(OrderTable.EXTERN_USER_NAME)
 
             val id = cursor.getLong(colId)
             val totalPrice = cursor.getDouble(colTotalPrice)
@@ -35,8 +36,9 @@ data class Order (var id: Long = -1, var totalPrice: Double, var date: Date, var
             val restaurantId = cursor.getLong(colRestaurantId)
             val platesId = cursor.getLong(colPlatesId)
             val userId = cursor.getLong(colUserId)
+            // val userName = if (colUserName != -1) cursor.getString(colUserName) else null
 
-            return Order(id, totalPrice, Date(date), paymentMethod, restaurantId, platesId, userId)
+            return Order(id, totalPrice, Date(date), paymentMethod, restaurantId, platesId, userId, /* userName */)
         }
     }
 }

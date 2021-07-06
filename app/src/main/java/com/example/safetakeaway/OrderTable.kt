@@ -33,6 +33,49 @@ class OrderTable (db: SQLiteDatabase) : BaseColumns {
         orderBy: String?
     ): Cursor? {
         return db.query(ORDER_TABLE, columns, selection, selectionArgs, groupBy, having, orderBy)
+
+    /*
+        val lastColumn = columns.size - 1
+
+        var posColNameUser = -1 // -1 indica que a coluna não foi pedida
+        for (i in 0..lastColumn) {
+            if (columns[i] == EXTERN_USER_NAME) {
+                posColNameUser = i
+                break
+            }
+        }
+
+        if (posColNameUser == -1) {
+            return db.query(ORDER_TABLE, columns, selection, selectionArgs, groupBy, having, orderBy)
+        }
+
+        var columnsUser = ""
+        for (i in 0..lastColumn) {
+            if (i > 0) columnsUser += ","
+
+            columnsUser += if (i == posColNameUser) {
+                "${UserTable.USER_TABLE}.${UserTable.NAME} AS $EXTERN_USER_NAME"
+            } else {
+                "${ORDER_TABLE}.${columns[i]}"
+            }
+        }
+
+        val tables = "$ORDER_TABLE INNER JOIN ${UserTable.USER_TABLE} ON ${UserTable.USER_TABLE}.${BaseColumns._ID}=$USER_ID"
+
+        var sql = "SELECT $columnsUser FROM $tables"
+
+        if (selection != null) sql += " WHERE $selection"
+
+        if (groupBy != null) {
+            sql += " GROUP BY $groupBy"
+            if (having != null) " HAVING $having"
+        }
+
+        if (orderBy != null) sql += " ORDER BY $orderBy"
+
+        // TODO: ERROR -> ambiguous column name: _id (code 1 SQLITE_ERROR): , while compiling: SELECT Orders._id,Orders.Total_Price,Orders.Date,Orders.Payment_Method,Orders.Restaurant_ID,Orders.Plate_ID,Orders.User_ID,User.Name AS User_Name FROM Orders INNER JOIN User ON User._id=User_ID WHERE _id=?
+        return db.rawQuery(sql, selectionArgs)
+        */
     }
 
     companion object {
@@ -43,7 +86,8 @@ class OrderTable (db: SQLiteDatabase) : BaseColumns {
         const val RESTAURANT_ID = "Restaurant_ID"
         const val PLATES_ID = "Plate_ID"
         const val USER_ID = "User_ID"
+        // const val EXTERN_USER_NAME = "User_Name"
 
-        val ALL_FIELD = arrayOf(BaseColumns._ID, TOTAL_PRICE, DATE, PAYMENT_METHOD, RESTAURANT_ID, PLATES_ID, USER_ID)
+        val ALL_FIELD = arrayOf(BaseColumns._ID, TOTAL_PRICE, DATE, PAYMENT_METHOD, RESTAURANT_ID, PLATES_ID, USER_ID, /* EXTERN_USER_NAME */)
     }
 }
