@@ -164,7 +164,7 @@ class ContentProviderTakeAway : ContentProvider() {
             PLATES_URI -> PlatesTable(db).insert(values!!)
             RESTAURANT_URI -> RestaurantTable(db).insert(values!!)
             CATEGORY_URI -> CategoryTable(db).insert(values!!)
-            else -> null
+            else -> -1L
         }
 
         if (id == -1L)
@@ -262,7 +262,7 @@ class ContentProviderTakeAway : ContentProvider() {
     }
 
     companion object {
-        private const val AUTHORITY = "com.example.covidfinalproject"
+        private const val AUTHORITY = "com.example.safetakeaway"
 
         private const val ORDER = "order"
         private const val USER = "user"

@@ -16,8 +16,7 @@ class AdapterOrder : RecyclerView.Adapter<ViewHolderOrder>() {
             notifyDataSetChanged()
         }
 
-    class ViewHolderOrder (itemView : View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+    class ViewHolderOrder (itemView : View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val textViewTotalPrice = itemView.findViewById<TextView>(R.id.textViewTotalPrice)
         private val textViewDate = itemView.findViewById<TextView>(R.id.textViewDate)
         private val textViewPaymentMethod = itemView.findViewById<TextView>(R.id.textViewPaymentMethod)
@@ -34,14 +33,14 @@ class AdapterOrder : RecyclerView.Adapter<ViewHolderOrder>() {
         fun updateOrder(order: Order) {
             this.order = order
 
-            val totalPrice = order.totalPrice
-            val date = order.date
+            val totalPrice = order.totalPrice.toString()
+            val date = order.date.toString()
             val restaurantId = order.restaurantId.toString()
             val platesId = order.platesId.toString()
             val userId = order.userId.toString()
 
-            textViewTotalPrice.text = "$totalPrice"
-            textViewDate.text = "$date"
+            textViewTotalPrice.text = "Total price: $totalPrice"
+            textViewDate.text = "Date: $date"
             textViewPaymentMethod.text = order.paymentMethod
             textViewRestaurantId.text = "Restaurant ID: $restaurantId"
             textViewPlatesId.text = "Plate ID: $platesId"

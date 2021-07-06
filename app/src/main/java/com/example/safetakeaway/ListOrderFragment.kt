@@ -35,7 +35,6 @@ class ListOrderFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         _binding = ListOrderFragmentBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,10 +44,6 @@ class ListOrderFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         adapterOrder = AdapterOrder()
         recycleViewOrder.adapter = adapterOrder
         recycleViewOrder.layoutManager = LinearLayoutManager(requireContext())
-
-        /* binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        } */
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_MANAGER_ORDER, null, this)
     }
@@ -69,7 +64,7 @@ class ListOrderFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             OrderTable.ALL_FIELD,
             null,
             null,
-            OrderTable.USER_ID
+            OrderTable.DATE
         )
     }
 

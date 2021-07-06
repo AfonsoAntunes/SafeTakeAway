@@ -10,15 +10,6 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <!--Item-->
-    <string name="order_name">Order: </string>
-    <string name="total_price">Total Price: </string>
-    <string name="date">Date: </string>
-    <string name="payment_method">Payment Method: </string>
-    <string name="restaurant_id">Restaurant: </string>
-    <string name="plates_id">Plates: </string>
-    <string name="user_id">User: </string>
-
     <!--Menu-->
     <string name="new_order_action">New Order</string>
     <string name="edit_order_action">Edit Order</string>
