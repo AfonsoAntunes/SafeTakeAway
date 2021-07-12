@@ -40,13 +40,14 @@ class DeleteOrderFragment : Fragment() {
         textViewTotalPrice = view.findViewById(R.id.textViewTotalPrice)
         textViewPaymentMethod = view.findViewById(R.id.textViewPaymentMethod)
 
-        // val order = AppData.selectedOrder!!
-        // textViewDate.setText(order.date)
-        // textViewUserId.setText(order.userId)
-        // textViewRestaurantId.setText(order.restaurantId)
-        // textViewPlatesId.setText(order.platesId)
-        // textViewTotalPrice.setText(order.totalPrice)
-        // textViewPaymentMethod.setText(order.paymentMethod)
+        val order = AppData.selectedOrder!!
+        textViewDate.text = order.date.toString()
+        textViewUserId.text = order.userId.toString()
+        textViewRestaurantId.text = order.restaurantId.toString()
+        textViewPlatesId.text = order.platesId.toString()
+        textViewTotalPrice.text = order.totalPrice.toString()
+        textViewPaymentMethod.setText(order.paymentMethod)
+
     }
 
     fun browseListOrder() {
