@@ -10,13 +10,19 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <!--Menu-->
+    <!--List Order Menu-->
     <string name="new_order_action">New Order</string>
     <string name="edit_order_action">Edit Order</string>
     <string name="delete_order_action">Delete Order</string>
 
-    <!--Nav-->
+    <!--Delete Order Menu-->
+    <string name="confirm_delete_order_action">Confirm</string>
+    <string name="cancel_delete_order_action">Cancel</string>
+
+    <!--List Order Fragment-->
     <string name="list_order">Order List</string>
+
+    <!--Delete Order Fragment-->
     <string name="Date">Date</string>
     <string name="UserId">User ID</string>
     <string name="RestaurantId">Restaurant ID</string>
