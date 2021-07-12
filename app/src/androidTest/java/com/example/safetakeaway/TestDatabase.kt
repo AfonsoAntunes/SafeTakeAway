@@ -157,7 +157,7 @@ class TestDatabase {
 
     @Before
     fun deleteDb() {
-        getAppContext().deleteDatabase(DbTakeAwayOpenHelper.DATABASE_NAME)
+        // getAppContext().deleteDatabase(DbTakeAwayOpenHelper.DATABASE_NAME)
     }
 
     @Test

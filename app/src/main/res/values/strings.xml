@@ -17,4 +17,10 @@
 
     <!--Nav-->
     <string name="list_order">Order List</string>
+    <string name="Date">Date</string>
+    <string name="UserId">User ID</string>
+    <string name="RestaurantId">Restaurant ID</string>
+    <string name="PlatesId">Plates ID</string>
+    <string name="totalPrice">Total Price</string>
+    <string name="PaymentMethod">Payment Method</string>
 </resources>
