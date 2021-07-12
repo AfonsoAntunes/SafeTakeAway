@@ -12,17 +12,17 @@
         tools:layout="@layout/list_order_fragment">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_listOrderFragment_to_deleteOrderFragment"
+            app:destination="@id/deleteOrderFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.safetakeaway.SecondFragment"
-        android:label="@string/second_fragment_label"
+        android:id="@+id/deleteOrderFragment"
+        android:name="com.example.safetakeaway.DeleteOrderFragment"
+        android:label="@string/delete_order"
         tools:layout="@layout/delete_order_fragment">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_deleteOrderFragment_to_listOrderFragment"
             app:destination="@id/listOrderFragment" />
     </fragment>
 </navigation>

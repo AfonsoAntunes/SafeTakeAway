@@ -19,8 +19,9 @@
     <string name="confirm_delete_order_action">Confirm</string>
     <string name="cancel_delete_order_action">Cancel</string>
 
-    <!--List Order Fragment-->
+    <!--Nav Graph-->
     <string name="list_order">Order List</string>
+    <string name="delete_order">Delete Order</string>
 
     <!--Delete Order Fragment-->
     <string name="Date">Date</string>
@@ -29,4 +30,9 @@
     <string name="PlatesId">Plates ID</string>
     <string name="totalPrice">Total Price</string>
     <string name="PaymentMethod">Payment Method</string>
+
+    <!--Delete Operations-->
+    <string name="error_delete_order">Error deleting Order</string>
+    <string name="order_deleted_successfully">Order Deleted Successfully</string>
+
 </resources>

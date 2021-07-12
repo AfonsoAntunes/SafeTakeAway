@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safetakeaway.databinding.ListOrderFragmentBinding
@@ -48,7 +49,15 @@ class ListOrderFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         LoaderManager.getInstance(this).initLoader(ID_LOADER_MANAGER_ORDER, null, this)
     }
 
+    fun browseDeleteOrder() {
+        findNavController().navigate(R.id.action_listOrderFragment_to_deleteOrderFragment)
+    }
     fun processMenuOption(item: MenuItem): Boolean {
+        when (item.itemId) {
+
+            R.id.delete_order_action -> browseDeleteOrder()
+            else -> return false
+        }
         return true
     }
 
