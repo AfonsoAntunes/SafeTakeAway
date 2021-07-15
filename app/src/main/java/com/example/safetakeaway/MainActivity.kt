@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
 
             else -> when (atualMenu) {
                 R.menu.list_order_menu -> (AppData.fragment as ListOrderFragment).processMenuOption(item)
+                R.menu.edit_order_menu -> (AppData.fragment as EditOrderFragment).processMenuOption(item)
                 R.menu.delete_order_menu -> (AppData.fragment as DeleteOrderFragment).processMenuOption(item)
                 else -> false
             }

@@ -56,15 +56,9 @@ class EditOrderFragment : Fragment() {
     }
 
     fun save() {
-        val date = textViewDate.text
-        val userId = textViewUserId.text
-        val restaurantId = textViewRestaurantId.text
-        val platesId = textViewPlatesId.text
-        val totalPrice = textViewTotalPrice.text
-
         val paymentMethod = editTextPaymentMethod.text.toString()
         if (paymentMethod.isEmpty()) {
-            editTextPaymentMethod.setError(getString(R.string.fill_payment_method))
+            editTextPaymentMethod.error = getString(R.string.fill_payment_method)
             editTextPaymentMethod.requestFocus()
             return
         }
