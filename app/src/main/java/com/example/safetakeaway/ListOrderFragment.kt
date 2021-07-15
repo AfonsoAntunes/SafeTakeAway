@@ -49,12 +49,17 @@ class ListOrderFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         LoaderManager.getInstance(this).initLoader(ID_LOADER_MANAGER_ORDER, null, this)
     }
 
+    fun browseEditOrder() {
+        findNavController().navigate(R.id.action_listOrderFragment_to_editOrderFragment)
+    }
+
     fun browseDeleteOrder() {
         findNavController().navigate(R.id.action_listOrderFragment_to_deleteOrderFragment)
     }
+
     fun processMenuOption(item: MenuItem): Boolean {
         when (item.itemId) {
-
+            R.id.edit_order_action -> browseEditOrder()
             R.id.delete_order_action -> browseDeleteOrder()
             else -> return false
         }

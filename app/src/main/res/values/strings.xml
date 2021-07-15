@@ -30,6 +30,11 @@
         <string name="totalPrice">Total Price</string>
         <string name="PaymentMethod">Payment Method</string>
 
+        <!--Edit Operations-->
+        <string name="fill_payment_method">Please, fill the Payment Method</string>
+        <string name="error_edit_order">Error to edit order</string>
+        <string name="order_edited_successfully">Order edited successfully</string>
+
         <!--Delete Operations-->
         <string name="error_delete_order">Error deleting Order</string>
         <string name="order_deleted_successfully">Order Deleted Successfully</string>
