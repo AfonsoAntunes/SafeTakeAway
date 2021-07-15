@@ -60,15 +60,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/textView11"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/PaymentMethod" />
+        android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/spinnerPaymentMethod"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPaymentMethod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/PaymentMethod" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>
