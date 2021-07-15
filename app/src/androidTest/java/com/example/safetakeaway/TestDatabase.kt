@@ -560,7 +560,7 @@ class TestDatabase {
         user.id = insertUser(userTable, user)
 
         val orderTable = getOrderTable(db)
-        val order = Order(totalPrice = 17.49, date = Date(2020-8-2), paymentMethod = "Dinheiro", restaurantId = restaurant.id, platesId = plate.id, userId = user.id /* userName = user.name */)
+        val order = Order(totalPrice = 17.49, date = Date(2020-8-2), paymentMethod = "Dinheiro", restaurantId = restaurant.id, platesId = plate.id, userId = user.id /*, restaurantName = restaurant.name, platesName = plate.name, userName = user.name */)
         order.id = insertOrder(orderTable, order)
 
         val orderId = getOrderDB(orderTable, order.id)
@@ -594,7 +594,7 @@ class TestDatabase {
         user.id = insertUser(userTable, user)
 
         val orderTable = getOrderTable(db)
-        val order = Order(totalPrice = 17.49, date = Date(2020-10-10), paymentMethod = "Dinheiro", restaurantId = restaurant.id, platesId = plate.id, userId = user.id /* userName = user.name */)
+        val order = Order(totalPrice = 17.49, date = Date(2020-10-10), paymentMethod = "Dinheiro", restaurantId = restaurant.id, platesId = plate.id, userId = user.id/* , restaurantName = restaurant.name, platesName = plate.name, userName = user.name */)
         order.id = insertOrder(orderTable, order)
 
         val orderId = getOrderDB(orderTable, order.id)
@@ -628,7 +628,7 @@ class TestDatabase {
         user.id = insertUser(userTable, user)
 
         val orderTable = getOrderTable(db)
-        val order = Order(totalPrice = 30.00, date = Date(2021-6-20), paymentMethod = "MB Way", restaurantId = restaurant.id, platesId = plate.id, userId = user.id /* userName = user.name */)
+        val order = Order(totalPrice = 30.00, date = Date(2021-6-20), paymentMethod = "MB Way", restaurantId = restaurant.id, platesId = plate.id, userId = user.id /*, restaurantName = restaurant.name, platesName = plate.name, userName = user.name */)
         order.id = insertOrder(orderTable, order)
 
         order.paymentMethod = "Cartão de Crédito"
@@ -664,7 +664,7 @@ class TestDatabase {
         user.id = insertUser(userTable, user)
 
         val orderTable = getOrderTable(db)
-        val order = Order(totalPrice = 10.00, date = Date(2021-7-9), paymentMethod = "Test2", restaurantId = restaurant.id, platesId = plate.id, userId = user.id /* userName = user.name */)
+        val order = Order(totalPrice = 10.00, date = Date(2021-7-9), paymentMethod = "Test2", restaurantId = restaurant.id, platesId = plate.id, userId = user.id /*, restaurantName = restaurant.name, platesName = plate.name, userName = user.name */)
         order.id = insertOrder(orderTable, order)
 
         val deletedData = orderTable.delete("${BaseColumns._ID}=?", arrayOf(order.id.toString()))
@@ -672,4 +672,5 @@ class TestDatabase {
 
         db.close()
     }
+
 }

@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.provider.BaseColumns
 import java.util.*
 
-data class Order (var id: Long = -1, var totalPrice: Double, var date: Date, var paymentMethod: String, var restaurantId: Long, var platesId: Long, var userId: Long, /* var userName: String? = null */) {
+data class Order (var id: Long = -1, var totalPrice: Double, var date: Date, var paymentMethod: String, var restaurantId: Long, var platesId: Long, var userId: Long, /* var restaurantName: String? = null, var platesName: String? = null, var userName: String? = null */) {
     fun toContentValues(): ContentValues {
         val values = ContentValues().apply {
             put(OrderTable.TOTAL_PRICE, totalPrice)
@@ -27,6 +27,8 @@ data class Order (var id: Long = -1, var totalPrice: Double, var date: Date, var
             val colRestaurantId = cursor.getColumnIndex(OrderTable.RESTAURANT_ID)
             val colPlatesId = cursor.getColumnIndex(OrderTable.PLATES_ID)
             val colUserId = cursor.getColumnIndex(OrderTable.USER_ID)
+            // val colRestaurantName = cursor.getColumnIndex(OrderTable.EXTERN_RESTAURANT_NAME)
+            // val colPlatesName = cursor.getColumnIndex(OrderTable.EXTERN_PLATES_NAME)
             // val colUserName = cursor.getColumnIndex(OrderTable.EXTERN_USER_NAME)
 
             val id = cursor.getLong(colId)
@@ -36,9 +38,11 @@ data class Order (var id: Long = -1, var totalPrice: Double, var date: Date, var
             val restaurantId = cursor.getLong(colRestaurantId)
             val platesId = cursor.getLong(colPlatesId)
             val userId = cursor.getLong(colUserId)
+            // val restaurantName = if (colRestaurantName != -1) cursor.getString(colRestaurantName) else null
+            // val platesName = if (colPlatesName != -1) cursor.getString(colPlatesName) else null
             // val userName = if (colUserName != -1) cursor.getString(colUserName) else null
 
-            return Order(id, totalPrice, Date(date), paymentMethod, restaurantId, platesId, userId, /* userName */)
+            return Order(id, totalPrice, Date(date), paymentMethod, restaurantId, platesId, userId /*, restaurantName, platesName, userName */)
         }
     }
 }
