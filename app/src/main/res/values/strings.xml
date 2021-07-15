@@ -34,5 +34,7 @@
     <!--Delete Operations-->
     <string name="error_delete_order">Error deleting Order</string>
     <string name="order_deleted_successfully">Order Deleted Successfully</string>
+    <string name="save">Save Edited Order</string>
+    <string name="cancel">Cancel Edited Order</string>
 
 </resources>
