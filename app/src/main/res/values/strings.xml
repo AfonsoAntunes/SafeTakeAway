@@ -1,40 +1,36 @@
 <resources>
     <string name="app_name">Safe Take Away</string>
     <string name="action_settings">Settings</string>
+
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+        <!--Nav Graph-->
+        <string name="list_order">Order List</string>
+        <string name="edit_order">Edit Order</string>
+        <string name="delete_order">Delete Order</string>
 
-    <!--List Order Menu-->
-    <string name="new_order_action">New Order</string>
-    <string name="edit_order_action">Edit Order</string>
-    <string name="delete_order_action">Delete Order</string>
+        <!--List Order Menu-->
+        <string name="new_order_action">New Order</string>
+        <string name="edit_order_action">Edit Order</string>
+        <string name="delete_order_action">Delete Order</string>
 
-    <!--Delete Order Menu-->
-    <string name="confirm_delete_order_action">Confirm</string>
-    <string name="cancel_delete_order_action">Cancel</string>
+        <!--Edit Order Menu-->
+        <string name="save_edited_order_action">Save Edited Order</string>
+        <string name="cancel_edited_order_action">Cancel Edited Order</string>
 
-    <!--Nav Graph-->
-    <string name="list_order">Order List</string>
-    <string name="delete_order">Delete Order</string>
+        <!--Delete Order Menu-->
+        <string name="confirm_delete_order_action">Confirm</string>
+        <string name="cancel_delete_order_action">Cancel</string>
 
-    <!--Delete Order Fragment-->
-    <string name="Date">Date</string>
-    <string name="UserId">User ID</string>
-    <string name="RestaurantId">Restaurant ID</string>
-    <string name="PlatesId">Plates ID</string>
-    <string name="totalPrice">Total Price</string>
-    <string name="PaymentMethod">Payment Method</string>
+        <!--Edit/Delete Order Fragment-->
+        <string name="Date">Date</string>
+        <string name="UserId">User ID</string>
+        <string name="RestaurantId">Restaurant ID</string>
+        <string name="PlatesId">Plates ID</string>
+        <string name="totalPrice">Total Price</string>
+        <string name="PaymentMethod">Payment Method</string>
 
-    <!--Delete Operations-->
-    <string name="error_delete_order">Error deleting Order</string>
-    <string name="order_deleted_successfully">Order Deleted Successfully</string>
-    <string name="save">Save Edited Order</string>
-    <string name="cancel">Cancel Edited Order</string>
-
+        <!--Delete Operations-->
+        <string name="error_delete_order">Error deleting Order</string>
+        <string name="order_deleted_successfully">Order Deleted Successfully</string>
 </resources>

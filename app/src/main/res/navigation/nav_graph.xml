@@ -12,9 +12,25 @@
         tools:layout="@layout/list_order_fragment">
 
         <action
+            android:id="@+id/action_listOrderFragment_to_editOrderFragment"
+            app:destination="@id/editOrderFragment" />
+
+        <action
             android:id="@+id/action_listOrderFragment_to_deleteOrderFragment"
             app:destination="@id/deleteOrderFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/editOrderFragment"
+        android:name="com.example.safetakeaway.EditOrderFragment"
+        android:label="@string/edit_order"
+        tools:layout="@layout/edit_order_fragment">
+
+        <action
+            android:id="@+id/action_editOrderFragment_to_listOrderFragment"
+            app:destination="@id/listOrderFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/deleteOrderFragment"
         android:name="com.example.safetakeaway.DeleteOrderFragment"
