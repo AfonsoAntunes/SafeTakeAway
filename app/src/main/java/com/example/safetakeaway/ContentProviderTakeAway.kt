@@ -61,24 +61,6 @@ class ContentProviderTakeAway : ContentProvider() {
                 null
             )
 
-            CITY_URI -> CityTable(db).query(
-                projection as Array<String>,
-                selection,
-                selectionArgs as Array<String>?,
-                null,
-                null,
-                sortOrder
-            )
-
-            SPECIFIC_CITY_URI -> CityTable(db).query(
-                projection as Array<String>,
-                "${BaseColumns._ID}=?",
-                arrayOf(uri.lastPathSegment!!),
-                null,
-                null,
-                null
-            )
-
             PLATES_URI -> PlatesTable(db).query(
                 projection as Array<String>,
                 selection,
@@ -142,8 +124,6 @@ class ContentProviderTakeAway : ContentProvider() {
             SPECIFIC_ORDER_URI -> "$SINGLE_ITEM/$ORDER"
             USER_URI -> "$MULTIPLE_ITEMS/$USER"
             SPECIFIC_USER_URI -> "$SINGLE_ITEM/$USER"
-            CITY_URI -> "$MULTIPLE_ITEMS/$CITY"
-            SPECIFIC_CITY_URI -> "$SINGLE_ITEM/$CITY"
             PLATES_URI -> "$MULTIPLE_ITEMS/$PLATES"
             SPECIFIC_PLATES_URI -> "$SINGLE_ITEM/$PLATES"
             RESTAURANT_URI -> "$MULTIPLE_ITEMS/$RESTAURANT"
@@ -160,7 +140,6 @@ class ContentProviderTakeAway : ContentProvider() {
         val id = when (getUriMatcher().match(uri)) {
             ORDER_URI -> OrderTable(db).insert(values!!)
             USER_URI -> UserTable(db).insert(values!!)
-            CITY_URI -> CityTable(db).insert(values!!)
             PLATES_URI -> PlatesTable(db).insert(values!!)
             RESTAURANT_URI -> RestaurantTable(db).insert(values!!)
             CATEGORY_URI -> CategoryTable(db).insert(values!!)
@@ -184,11 +163,6 @@ class ContentProviderTakeAway : ContentProvider() {
             )
 
             SPECIFIC_USER_URI -> UserTable(db).delete(
-                "${BaseColumns._ID}=?",
-                arrayOf(uri.lastPathSegment!!)
-            )
-
-            SPECIFIC_CITY_URI -> CityTable(db).delete(
                 "${BaseColumns._ID}=?",
                 arrayOf(uri.lastPathSegment!!)
             )
@@ -233,12 +207,6 @@ class ContentProviderTakeAway : ContentProvider() {
                 arrayOf(uri.lastPathSegment!!)
             )
 
-            SPECIFIC_CITY_URI -> CityTable(db).update(
-                values!!,
-                "${BaseColumns._ID}=?",
-                arrayOf(uri.lastPathSegment!!)
-            )
-
             SPECIFIC_PLATES_URI -> PlatesTable(db).update(
                 values!!,
                 "${BaseColumns._ID}=?",
@@ -266,7 +234,6 @@ class ContentProviderTakeAway : ContentProvider() {
 
         private const val ORDER = "order"
         private const val USER = "user"
-        private const val CITY = "city"
         private const val PLATES = "plates"
         private const val RESTAURANT = "restaurant"
         private const val CATEGORY = "category"
@@ -275,8 +242,6 @@ class ContentProviderTakeAway : ContentProvider() {
         private const val SPECIFIC_ORDER_URI = 101
         private const val USER_URI = 200
         private const val SPECIFIC_USER_URI = 201
-        private const val CITY_URI = 300
-        private const val SPECIFIC_CITY_URI = 301
         private const val PLATES_URI = 400
         private const val SPECIFIC_PLATES_URI = 401
         private const val RESTAURANT_URI = 50
@@ -291,7 +256,6 @@ class ContentProviderTakeAway : ContentProvider() {
 
         public val ORDER_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, ORDER)
         public val USER_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, USER)
-        public val CITY_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, CITY)
         public val PLATES_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, PLATES)
         public val RESTAURANT_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, RESTAURANT)
         public val CATEGORY_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, CATEGORY)
@@ -303,8 +267,6 @@ class ContentProviderTakeAway : ContentProvider() {
             uriMatcher.addURI(AUTHORITY, "$ORDER/#", SPECIFIC_ORDER_URI)
             uriMatcher.addURI(AUTHORITY, USER, USER_URI)
             uriMatcher.addURI(AUTHORITY, "$USER/#", SPECIFIC_USER_URI)
-            uriMatcher.addURI(AUTHORITY, CITY, CITY_URI)
-            uriMatcher.addURI(AUTHORITY, "$CITY/#", SPECIFIC_CITY_URI)
             uriMatcher.addURI(AUTHORITY, PLATES, PLATES_URI)
             uriMatcher.addURI(AUTHORITY, "$PLATES/#", SPECIFIC_PLATES_URI)
             uriMatcher.addURI(AUTHORITY, RESTAURANT, RESTAURANT_URI)

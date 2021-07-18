@@ -9,7 +9,7 @@ class UserTable (db: SQLiteDatabase) : BaseColumns {
     private val db : SQLiteDatabase = db
     fun createTable() =
         db.execSQL(
-            "CREATE TABLE $USER_TABLE (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT NOT NULL, $GENDER TEXT NOT NULL, $ADDRESS TEXT NOT NULL, $EMAIL TEXT NOT NULL, $PHONE_NUMBER TEXT NOT NULL, $CITY_ID INTEGER NOT NULL, FOREIGN KEY ($CITY_ID) REFERENCES ${CityTable.CITY_TABLE})"
+            "CREATE TABLE $USER_TABLE (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT NOT NULL, $GENDER TEXT NOT NULL, $ADDRESS TEXT NOT NULL, $CITY TEXT NOT NULL, $EMAIL TEXT NOT NULL, $PHONE_NUMBER TEXT NOT NULL)"
         )
 
     fun insert(values: ContentValues): Long {
@@ -40,10 +40,10 @@ class UserTable (db: SQLiteDatabase) : BaseColumns {
         const val NAME = "Name"
         const val GENDER = "Gender"
         const val ADDRESS = "Address"
+        const val CITY = "City"
         const val EMAIL = "Email"
         const val PHONE_NUMBER = "Phone_Number"
-        const val CITY_ID = "City_ID"
 
-        val ALL_FIELD = arrayOf(BaseColumns._ID, NAME, GENDER, ADDRESS, EMAIL, PHONE_NUMBER, CITY_ID)
+        val ALL_FIELD = arrayOf(BaseColumns._ID, NAME, GENDER, ADDRESS, CITY, EMAIL, PHONE_NUMBER)
     }
 }

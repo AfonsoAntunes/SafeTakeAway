@@ -25,7 +25,6 @@ class TestDatabase {
     private fun getCategoryTable(db: SQLiteDatabase) = CategoryTable(db)
     private fun getRestaurantTable(db: SQLiteDatabase) = RestaurantTable(db)
     private fun getPlatesTable(db: SQLiteDatabase) = PlatesTable(db)
-    private fun getCityTable(db: SQLiteDatabase) = CityTable(db)
     private fun getUserTable(db: SQLiteDatabase) = UserTable(db)
     private fun getOrderTable(db: SQLiteDatabase) = OrderTable(db)
 
@@ -55,12 +54,6 @@ class TestDatabase {
 
     private fun insertCategory(categoryTable: CategoryTable, category: Category): Long {
         val id = categoryTable.insert(category.toContentValues())
-        assertNotEquals(-1, id)
-        return id
-    }
-
-    private fun insertCity(cityTable: CityTable, city: City): Long {
-        val id = cityTable.insert(city.toContentValues())
         assertNotEquals(-1, id)
         return id
     }
@@ -140,24 +133,9 @@ class TestDatabase {
         return Category.fromCursor(cursor)
     }
 
-    private fun getCityDB(
-        cityTable: CityTable, id: Long): City {
-        val cursor = cityTable.query(
-            CityTable.ALL_FIELD,
-            "${BaseColumns._ID}=?",
-            arrayOf(id.toString()),
-            null,
-            null,
-            null
-        )
-        assertNotNull(cursor)
-        assert(cursor!!.moveToNext())
-        return City.fromCursor(cursor)
-    }
-
     @Before
     fun deleteDb() {
-        // getAppContext().deleteDatabase(DbTakeAwayOpenHelper.DATABASE_NAME)
+        getAppContext().deleteDatabase(DbTakeAwayOpenHelper.DATABASE_NAME)
     }
 
     @Test
@@ -397,76 +375,11 @@ class TestDatabase {
     }
 
     @Test
-    fun getCreateCity() {
-        val db = getDbTakeAwayOpenHelper().writableDatabase
-
-        val cityTable = getCityTable(db)
-        val city = City(city = "Guarda")
-        city.id = insertCity(cityTable, city)
-
-        val cityId = getCityDB(cityTable, city.id)
-
-        assertEquals(city, cityId)
-        db.close()
-    }
-
-    @Test
-    fun getReadCity() {
-        val db = getDbTakeAwayOpenHelper().writableDatabase
-
-        val cityTable = getCityTable(db)
-        val city = City(city = "Guarda")
-        city.id = insertCity(cityTable, city)
-
-        val cityId = getCityDB(cityTable, city.id)
-
-        assertEquals(city, cityId)
-        db.close()
-    }
-
-    @Test
-    fun getUpdateCity() {
-        val db = getDbTakeAwayOpenHelper().writableDatabase
-
-        val cityTable = getCityTable(db)
-        val city = City(city = "Guarda")
-        city.id = insertCity(cityTable, city)
-
-        city.city = "Coimbra"
-
-        val changedData = cityTable.update(city.toContentValues(), "${BaseColumns._ID}=?", arrayOf(city.id.toString()))
-        assertEquals(1, changedData)
-
-        val cityId = getCityDB(cityTable, city.id)
-
-        assertEquals(city, cityId)
-        db.close()
-    }
-
-    @Test
-    fun getDeleteCity() {
-        val db = getDbTakeAwayOpenHelper().writableDatabase
-
-        val cityTable = getCityTable(db)
-        val city = City(city = "Test")
-        city.id = insertCity(cityTable, city)
-
-        val deletedData = cityTable.delete("${BaseColumns._ID}=?", arrayOf(city.id.toString()))
-        assertEquals(1, deletedData)
-
-        db.close()
-    }
-
-    @Test
     fun getCreateUser() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val cityTable = getCityTable(db)
-        val city = City(city = "Viseu")
-        city.id = insertCity(cityTable, city)
-
         val userTable = getUserTable(db)
-        val user = User(name = "Afonso Antunes", gender = "Masculino", address = "Rua Francisco Sá Carneiro", email = "afonsoantunes@mail.com", phoneNumber = "969696969", cityId = city.id)
+        val user = User(name = "Afonso Antunes", gender = "Masculino", address = "Rua Francisco Sá Carneiro", city = "Viseu", email = "afonsoantunes@mail.com", phoneNumber = "969696969")
         user.id = insertUser(userTable, user)
 
         val userId = getUserDB(userTable, user.id)
@@ -479,12 +392,8 @@ class TestDatabase {
     fun getReadUser() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val cityTable = getCityTable(db)
-        val city = City(city = "Viseu")
-        city.id = insertCity(cityTable, city)
-
         val userTable = getUserTable(db)
-        val user = User(name = "Afonso Antunes", gender = "Masculino", address = "Rua Francisco Sá Carneiro", email = "afonsoantunes@mail.com", phoneNumber = "969696969", cityId = city.id)
+        val user = User(name = "Afonso Antunes", gender = "Masculino", address = "Rua Francisco Sá Carneiro", city = "Viseu", email = "afonsoantunes@mail.com", phoneNumber = "969696969")
         user.id = insertUser(userTable, user)
 
         val userId = getUserDB(userTable, user.id)
@@ -497,15 +406,12 @@ class TestDatabase {
     fun getUpdateUser() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val cityTable = getCityTable(db)
-        val city = City(city = "Viseu")
-        city.id = insertCity(cityTable, city)
-
         val userTable = getUserTable(db)
-        val user = User(name = "Afonso Antunes", gender = "Masculino", address = "Rua Francisco Sá Carneiro", email = "afonsoantunes@mail.com", phoneNumber = "969696969", cityId = city.id)
+        val user = User(name = "Afonso Antunes", gender = "Masculino", address = "Rua Francisco Sá Carneiro", city = "Viseu", email = "afonsoantunes@mail.com", phoneNumber = "969696969")
         user.id = insertUser(userTable, user)
 
         user.address = "Rua Soeiro Viegas"
+        user.city = "Guarda"
         user.phoneNumber = "929292929"
 
         val changedData = userTable.update(user.toContentValues(), "${BaseColumns._ID}=?", arrayOf(user.id.toString()))
@@ -521,12 +427,8 @@ class TestDatabase {
     fun getDeleteUser() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val cityTable = getCityTable(db)
-        val city = City(city = "Test1")
-        city.id = insertCity(cityTable, city)
-
         val userTable = getUserTable(db)
-        val user = User(name = "Afonso Antunes", gender = "Masculino", address = "Rua Francisco Sá Carneiro", email = "afonsoantunes@mail.com", phoneNumber = "969696969", cityId = city.id)
+        val user = User(name = "Afonso Antunes", gender = "Masculino", address = "Rua Francisco Sá Carneiro", city = "Guarda", email = "afonsoantunes@mail.com", phoneNumber = "969696969")
         user.id = insertUser(userTable, user)
 
         val deletedData = userTable.delete("${BaseColumns._ID}=?", arrayOf(user.id.toString()))
@@ -551,12 +453,8 @@ class TestDatabase {
         val plate = Plates(name = "Durum", price = 5.99, categoryId = category.id, restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
-        val cityTable = getCityTable(db)
-        val city = City(city = "Guarda")
-        city.id = insertCity(cityTable, city)
-
         val userTable = getUserTable(db)
-        val user = User(name = "Joaquim Costa", gender = "Masculino", address = "Quinta do Pina", email = "joaquimcosta@mail.com", phoneNumber = "969696969", cityId = city.id)
+        val user = User(name = "Joaquim Costa", gender = "Masculino", address = "Quinta do Pina", city = "Guarda", email = "joaquimcosta@mail.com", phoneNumber = "969696969")
         user.id = insertUser(userTable, user)
 
         val orderTable = getOrderTable(db)
@@ -585,12 +483,8 @@ class TestDatabase {
         val plate = Plates(name = "Box", price = 3.49, categoryId = category.id, restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
-        val cityTable = getCityTable(db)
-        val city = City(city = "Vila Cortez do Mondego")
-        city.id = insertCity(cityTable, city)
-
         val userTable = getUserTable(db)
-        val user = User(name = "Carlos Domingos", gender = "Masculino", address = "Vila Cortez do Mondego", email = "carlosdomingos@mail.com", phoneNumber = "929292929", cityId = city.id)
+        val user = User(name = "Carlos Domingos", gender = "Masculino", address = "Vila Cortez do Mondego", city = "Guarda", email = "carlosdomingos@mail.com", phoneNumber = "929292929")
         user.id = insertUser(userTable, user)
 
         val orderTable = getOrderTable(db)
@@ -619,12 +513,8 @@ class TestDatabase {
         val plate = Plates(name = "Sardinha Assada", price = 9.99, categoryId = category.id, restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
-        val cityTable = getCityTable(db)
-        val city = City(city = "Cerdeira")
-        city.id = insertCity(cityTable, city)
-
         val userTable = getUserTable(db)
-        val user = User(name = "Fátima Santiago", gender = "Feminino", address = "Cerdeira", email = "fatimasantiago@mail.com", phoneNumber = "909090909", cityId = city.id)
+        val user = User(name = "Fátima Santiago", gender = "Feminino", address = "Cerdeira", city = "Guarda", email = "fatimasantiago@mail.com", phoneNumber = "909090909")
         user.id = insertUser(userTable, user)
 
         val orderTable = getOrderTable(db)
@@ -655,12 +545,8 @@ class TestDatabase {
         val plate = Plates(name = "Test0", price = 5.00, categoryId = category.id, restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
-        val cityTable = getCityTable(db)
-        val city = City(city = "Test1")
-        city.id = insertCity(cityTable, city)
-
         val userTable = getUserTable(db)
-        val user = User(name = "Test1", gender = "Other", address = "Test1", email = "test2021@mail.com", phoneNumber = "100100100", cityId = city.id)
+        val user = User(name = "Test1", gender = "Other", address = "Test1", city = "Test1", email = "test2021@mail.com", phoneNumber = "100100100")
         user.id = insertUser(userTable, user)
 
         val orderTable = getOrderTable(db)
