@@ -28,6 +28,18 @@
         <action
             android:id="@+id/action_listRestaurantFragment_to_MainFragment"
             app:destination="@id/MainFragment" />
+        <action
+            android:id="@+id/action_listRestaurantFragment_to_newRestaurantFragment"
+            app:destination="@id/newRestaurantFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newRestaurantFragment"
+        android:name="com.example.safetakeaway.NewRestaurantFragment"
+        android:label="@string/new_restaurant" >
+        <action
+            android:id="@+id/action_newRestaurantFragment_to_listRestaurantFragment"
+            app:destination="@id/listRestaurantFragment" />
     </fragment>
 
     <fragment

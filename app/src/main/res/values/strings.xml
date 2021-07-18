@@ -12,6 +12,7 @@
 
         <!--Nav Graph-->
         <string name="list_restaurant">Restaurant List</string>
+        <string name="new_restaurant">New Restaurant</string>
         <string name="list_order">Order List</string>
         <string name="edit_order">Edit Order</string>
         <string name="delete_order">Delete Order</string>
