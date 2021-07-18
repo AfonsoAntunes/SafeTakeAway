@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_listRestaurantFragment_to_newRestaurantFragment"
             app:destination="@id/newRestaurantFragment" />
+        <action
+            android:id="@+id/action_listRestaurantFragment_to_editRestaurantFragment"
+            app:destination="@id/editRestaurantFragment" />
     </fragment>
 
     <fragment
@@ -80,5 +83,13 @@
         <action
             android:id="@+id/action_deleteOrderFragment_to_listOrderFragment"
             app:destination="@id/listOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRestaurantFragment"
+        android:name="com.example.safetakeaway.EditRestaurantFragment"
+        android:label="EditRestaurantFragment" >
+        <action
+            android:id="@+id/action_editRestaurantFragment_to_listRestaurantFragment"
+            app:destination="@id/listRestaurantFragment" />
     </fragment>
 </navigation>
