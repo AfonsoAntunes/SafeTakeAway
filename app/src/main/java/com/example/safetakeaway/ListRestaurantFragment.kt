@@ -51,9 +51,15 @@ class ListRestaurantFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
     fun browseNewRestaurant() {
         findNavController().navigate(R.id.action_listRestaurantFragment_to_newRestaurantFragment)
     }
+
+    fun browseEditRestaurant() {
+        findNavController().navigate(R.id.action_listRestaurantFragment_to_editRestaurantFragment)
+    }
+
     fun processMenuOption(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.new_restaurant_action -> browseNewRestaurant()
+            R.id.edit_restaurant_action -> browseEditRestaurant()
             else -> return false
         }
         return true

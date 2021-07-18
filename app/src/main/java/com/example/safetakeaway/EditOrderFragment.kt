@@ -10,7 +10,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.loader.app.LoaderManager
 import androidx.navigation.fragment.findNavController
 
 class EditOrderFragment : Fragment() {
