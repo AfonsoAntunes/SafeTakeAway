@@ -21,6 +21,10 @@
         <string name="edit_restaurant_action">Edit Restaurant</string>
         <string name="delete_restaurant_action">Delete Restaurant</string>
 
+        <!--New Restaurant Menu-->
+        <string name="create_new_restaurant_action">Create Restaurant</string>
+        <string name="cancel_new_restaurant_action">Cancel</string>
+
         <!--List Order Menu-->
         <string name="new_order_action">New Order</string>
         <string name="edit_order_action">Edit Order</string>
