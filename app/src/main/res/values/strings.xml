@@ -4,6 +4,11 @@
 
     <!-- Strings used for fragments for navigation -->
 
+        <!--Main Fragment-->
+        <string name="safe_take_away">Safe Take Away</string>
+        <string name="order">Order</string>
+        <string name="exit">Exit</string>
+
         <!--Nav Graph-->
         <string name="list_order">Order List</string>
         <string name="edit_order">Edit Order</string>
