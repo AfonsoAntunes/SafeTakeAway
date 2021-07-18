@@ -14,7 +14,7 @@
         android:text="@string/Restaurant" />
 
     <TextView
-        android:id="@+id/textViewDate2"
+        android:id="@+id/textViewRestaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -25,7 +25,7 @@
         android:text="@string/Category" />
 
     <TextView
-        android:id="@+id/textViewUserId2"
+        android:id="@+id/textViewCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
