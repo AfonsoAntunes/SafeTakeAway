@@ -36,6 +36,11 @@
     <string name="edit_restaurant_action">Edit Restaurant</string>
     <string name="delete_restaurant_action">Delete Restaurant</string>
 
+    <!--List Plates Menu-->
+    <string name="new_plates_action">New Plate</string>
+    <string name="edit_plates_action">Edit Plate</string>
+    <string name="delete_plates_action">Delete Plate</string>
+
     <!--List Order Menu-->
     <string name="new_order_action">New Order</string>
     <string name="edit_order_action">Edit Order</string>
