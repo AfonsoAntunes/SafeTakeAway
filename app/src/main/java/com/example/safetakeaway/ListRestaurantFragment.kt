@@ -48,6 +48,17 @@ class ListRestaurantFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
         LoaderManager.getInstance(this).initLoader(ID_LOADER_MANAGER_RESTAURANT, null, this)
     }
 
+    fun browseNewRestaurant() {
+        findNavController().navigate(R.id.action_listRestaurantFragment_to_newRestaurantFragment)
+    }
+    fun processMenuOption(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.new_restaurant_action -> browseNewRestaurant()
+            else -> return false
+        }
+        return true
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
