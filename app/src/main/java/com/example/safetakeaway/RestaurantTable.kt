@@ -9,7 +9,7 @@ class RestaurantTable(db: SQLiteDatabase) : BaseColumns {
     private val db : SQLiteDatabase = db
     fun createTable() =
         db.execSQL(
-            "CREATE TABLE $RESTAURANT_TABLE (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT NOT NULL, $CATEGORY_ID INTEGER NOT NULL, FOREIGN KEY ($CATEGORY_ID) REFERENCES ${CategoryTable.CATEGORY_TABLE})"
+            "CREATE TABLE $RESTAURANT_TABLE (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT NOT NULL, $CATEGORY TEXT NOT NULL)"
         )
 
     fun insert(values: ContentValues): Long {
@@ -38,8 +38,8 @@ class RestaurantTable(db: SQLiteDatabase) : BaseColumns {
     companion object {
         const val RESTAURANT_TABLE = "Restaurant"
         const val NAME = "Name"
-        const val CATEGORY_ID = "Category_ID"
+        const val CATEGORY = "Category"
 
-        val ALL_FIELD = arrayOf(BaseColumns._ID, NAME, CATEGORY_ID)
+        val ALL_FIELD = arrayOf(BaseColumns._ID, NAME, CATEGORY)
     }
 }

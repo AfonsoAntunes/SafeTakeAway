@@ -11,7 +11,6 @@ class DbTakeAwayOpenHelper (context: Context?) : SQLiteOpenHelper(context, DATAB
             PlatesTable(db).createTable()
             OrderTable(db).createTable()
             UserTable(db).createTable()
-            CategoryTable(db).createTable()
         }
     }
 

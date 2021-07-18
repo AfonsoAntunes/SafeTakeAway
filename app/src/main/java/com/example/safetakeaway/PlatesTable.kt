@@ -9,7 +9,7 @@ class PlatesTable (db: SQLiteDatabase) : BaseColumns {
     private val db : SQLiteDatabase = db
     fun createTable() =
         db.execSQL(
-            "CREATE TABLE $PLATES_TABLE (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT NOT NULL, $PRICE DOUBLE NOT NULL, $RESTAURANT_ID INTEGER NOT NULL, $CATEGORY_ID INTEGER NOT NULL, FOREIGN KEY ($RESTAURANT_ID) REFERENCES ${RestaurantTable.RESTAURANT_TABLE}, FOREIGN KEY ($CATEGORY_ID) REFERENCES ${CategoryTable.CATEGORY_TABLE})"
+            "CREATE TABLE $PLATES_TABLE (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $NAME TEXT NOT NULL, $CATEGORY TEXT NOT NULL, $PRICE DOUBLE NOT NULL, $RESTAURANT_ID INTEGER NOT NULL, FOREIGN KEY ($RESTAURANT_ID) REFERENCES ${RestaurantTable.RESTAURANT_TABLE})"
         )
 
     fun insert(values: ContentValues): Long {
@@ -38,10 +38,10 @@ class PlatesTable (db: SQLiteDatabase) : BaseColumns {
     companion object {
         const val PLATES_TABLE = "Plates"
         const val NAME = "Name"
+        const val CATEGORY = "Category"
         const val PRICE = "Price"
         const val RESTAURANT_ID = "Restaurant_ID"
-        const val CATEGORY_ID = "Category_ID"
 
-        val ALL_FIELD = arrayOf(BaseColumns._ID, NAME, PRICE, RESTAURANT_ID, CATEGORY_ID)
+        val ALL_FIELD = arrayOf(BaseColumns._ID, NAME, CATEGORY, PRICE, RESTAURANT_ID)
     }
 }

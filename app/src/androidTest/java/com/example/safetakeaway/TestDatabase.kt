@@ -22,7 +22,6 @@ class TestDatabase {
     private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
     private fun getDbTakeAwayOpenHelper() = DbTakeAwayOpenHelper(getAppContext())
 
-    private fun getCategoryTable(db: SQLiteDatabase) = CategoryTable(db)
     private fun getRestaurantTable(db: SQLiteDatabase) = RestaurantTable(db)
     private fun getPlatesTable(db: SQLiteDatabase) = PlatesTable(db)
     private fun getUserTable(db: SQLiteDatabase) = UserTable(db)
@@ -48,12 +47,6 @@ class TestDatabase {
 
     private fun insertUser(userTable: UserTable, user: User): Long {
         val id = userTable.insert(user.toContentValues())
-        assertNotEquals(-1, id)
-        return id
-    }
-
-    private fun insertCategory(categoryTable: CategoryTable, category: Category): Long {
-        val id = categoryTable.insert(category.toContentValues())
         assertNotEquals(-1, id)
         return id
     }
@@ -118,21 +111,6 @@ class TestDatabase {
         return User.fromCursor(cursor)
     }
 
-    private fun getCategoryDB(
-        categoryTable: CategoryTable, id: Long): Category {
-        val cursor = categoryTable.query(
-            CategoryTable.ALL_FIELD,
-            "${BaseColumns._ID}=?",
-            arrayOf(id.toString()),
-            null,
-            null,
-            null
-        )
-        assertNotNull(cursor)
-        assert(cursor!!.moveToNext())
-        return Category.fromCursor(cursor)
-    }
-
     @Before
     fun deleteDb() {
         getAppContext().deleteDatabase(DbTakeAwayOpenHelper.DATABASE_NAME)
@@ -147,76 +125,11 @@ class TestDatabase {
     }
 
     @Test
-    fun getCreateCategory() {
-        val db = getDbTakeAwayOpenHelper().writableDatabase
-        val categoryTable = getCategoryTable(db)
-
-        val category = Category(type = "Italiana")
-        category.id = insertCategory(categoryTable, category)
-
-        val categoryId = getCategoryDB(categoryTable, category.id)
-
-        assertEquals(category, categoryId)
-        db.close()
-    }
-
-    @Test
-    fun getReadCategory() {
-        val db = getDbTakeAwayOpenHelper().writableDatabase
-        val categoryTable = getCategoryTable(db)
-
-        val category = Category(type = "Italiana")
-        category.id = insertCategory(categoryTable, category)
-
-        val categoryId = getCategoryDB(categoryTable, category.id)
-
-        assertEquals(category, categoryId)
-        db.close()
-    }
-
-    @Test
-    fun getUpdateCategory() {
-        val db = getDbTakeAwayOpenHelper().writableDatabase
-
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Portuguesa")
-        category.id = insertCategory(categoryTable, category)
-
-        category.type = "Brasileira"
-
-        val changedData = categoryTable.update(category.toContentValues(), "${BaseColumns._ID}=?", arrayOf(category.id.toString()))
-        assertEquals(1, changedData)
-
-        val categoryId = getCategoryDB(categoryTable, category.id)
-
-        assertEquals(category, categoryId)
-        db.close()
-    }
-
-    @Test
-    fun getDeleteCategory() {
-        val db = getDbTakeAwayOpenHelper().writableDatabase
-
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Test")
-        category.id = insertCategory(categoryTable, category)
-
-        val deletedData = categoryTable.delete("${BaseColumns._ID}=?", arrayOf(category.id.toString()))
-        assertEquals(1, deletedData)
-
-        db.close()
-    }
-
-    @Test
     fun getCreateRestaurant() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Italiana")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "Tiago's Pizza", categoryId = category.id)
+        val restaurant = Restaurant(name = "Tiago's Pizza", category = "Italian")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         val restaurantId = getRestaurantDB(restaurantTable, restaurant.id)
@@ -229,12 +142,8 @@ class TestDatabase {
     fun getReadRestaurant() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Italiana")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "Central 2", categoryId = category.id)
+        val restaurant = Restaurant(name = "Central", category = "Italian")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         val restaurantId = getRestaurantDB(restaurantTable, restaurant.id)
@@ -247,12 +156,8 @@ class TestDatabase {
     fun getUpdateRestaurant() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Portuguesa")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "Sardinha", categoryId = category.id)
+        val restaurant = Restaurant(name = "Sardinha", category = "Portuguese")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         restaurant.name = "Videira"
@@ -270,12 +175,8 @@ class TestDatabase {
     fun getDeleteRestaurant() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Test")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "Test", categoryId = category.id)
+        val restaurant = Restaurant(name = "Test", category = "Test")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         val deletedData = restaurantTable.delete("${BaseColumns._ID}=?", arrayOf(restaurant.id.toString()))
@@ -288,16 +189,12 @@ class TestDatabase {
     fun getCreatePlate() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Italiana")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "Telepizza", categoryId = category.id)
+        val restaurant = Restaurant(name = "Telepizza", category = "Italian")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         val platesTable = getPlatesTable(db)
-        val plate = Plates(name = "Bolonhesa", price = 7.99, categoryId = category.id, restaurantId = restaurant.id)
+        val plate = Plates(name = "Bolognese", category = "Pastas", price = 7.99,  restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
         val platesId = getPlatesDB(platesTable, plate.id)
@@ -310,16 +207,12 @@ class TestDatabase {
     fun getReadPlate() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Castelhana")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "O Ferrinho", categoryId = category.id,)
+        val restaurant = Restaurant(name = "O Ferrinho", category = "Regional")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         val platesTable = getPlatesTable(db)
-        val plate = Plates(name = "Cabrito Assado", price = 7.99, categoryId = category.id, restaurantId = restaurant.id)
+        val plate = Plates(name = "Roasted Lamb", category = "Meat", price = 7.99, restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
         val platesId = getPlatesDB(platesTable, plate.id)
@@ -332,18 +225,15 @@ class TestDatabase {
     fun getUpdatePlate() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Portuguesa")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "Sardinha", categoryId = category.id)
+        val restaurant = Restaurant(name = "Sardinha", category = "Portuguese")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         val platesTable = getPlatesTable(db)
-        val plate = Plates(name = "Sardinha Assada", price = 9.99, categoryId = category.id, restaurantId = restaurant.id)
+        val plate = Plates(name = "Grilled Sardines", category = "Summer Season Fish", price = 9.99, restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
+        plate.category = "Fish"
         plate.price = 7.49
 
         val changedData = platesTable.update(plate.toContentValues(), "${BaseColumns._ID}=?", arrayOf(plate.id.toString()))
@@ -356,16 +246,12 @@ class TestDatabase {
     fun getDeletePlate() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Test")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "Test", categoryId = category.id)
+        val restaurant = Restaurant(name = "Test", category = "Test")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         val platesTable = getPlatesTable(db)
-        val plate = Plates(name = "Test0",  price = 5.00, categoryId = category.id, restaurantId = restaurant.id)
+        val plate = Plates(name = "Test0", category = "Test", price = 5.00, restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
         val deletedData = platesTable.delete("${BaseColumns._ID}=?", arrayOf(plate.id.toString()))
@@ -441,16 +327,12 @@ class TestDatabase {
     fun getCreateOrder() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Árabe")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "Por do Sol", categoryId = category.id)
+        val restaurant = Restaurant(name = "Por do Sol", category = "Arabic")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         val platesTable = getPlatesTable(db)
-        val plate = Plates(name = "Durum", price = 5.99, categoryId = category.id, restaurantId = restaurant.id)
+        val plate = Plates(name = "Durum", category = "Meat", price = 5.99, restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
         val userTable = getUserTable(db)
@@ -471,16 +353,12 @@ class TestDatabase {
     fun getReadOrder() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Árabe")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "S. Vicente", categoryId = category.id)
+        val restaurant = Restaurant(name = "S. Vicente", category = "Arabic")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         val platesTable = getPlatesTable(db)
-        val plate = Plates(name = "Box", price = 3.49, categoryId = category.id, restaurantId = restaurant.id)
+        val plate = Plates(name = "Box", category = "Meat", price = 3.49, restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
         val userTable = getUserTable(db)
@@ -501,16 +379,12 @@ class TestDatabase {
     fun getUpdateOrder() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Portuguesa")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "Sardinha", categoryId = category.id)
+        val restaurant = Restaurant(name = "Sardinha", category = "Portuguese")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         val platesTable = getPlatesTable(db)
-        val plate = Plates(name = "Sardinha Assada", price = 9.99, categoryId = category.id, restaurantId = restaurant.id)
+        val plate = Plates(name = "Grilled Sardines", category = "Summer Season Fish", price = 9.99, restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
         val userTable = getUserTable(db)
@@ -533,16 +407,12 @@ class TestDatabase {
     fun getDeleteOrder() {
         val db = getDbTakeAwayOpenHelper().writableDatabase
 
-        val categoryTable = getCategoryTable(db)
-        val category = Category(type = "Test")
-        category.id = insertCategory(categoryTable, category)
-
         val restaurantTable = getRestaurantTable(db)
-        val restaurant = Restaurant(name = "Test", categoryId = category.id)
+        val restaurant = Restaurant(name = "Test", category = "Test")
         restaurant.id = insertRestaurant(restaurantTable, restaurant)
 
         val platesTable = getPlatesTable(db)
-        val plate = Plates(name = "Test0", price = 5.00, categoryId = category.id, restaurantId = restaurant.id)
+        val plate = Plates(name = "Test0", category = "Test", price = 5.00, restaurantId = restaurant.id)
         plate.id = insertPlates(platesTable, plate)
 
         val userTable = getUserTable(db)

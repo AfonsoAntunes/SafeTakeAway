@@ -4,11 +4,11 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
-data class Restaurant (var id: Long = -1, var name: String, var categoryId: Long) {
+data class Restaurant (var id: Long = -1, var name: String, var category: String) {
     fun toContentValues(): ContentValues {
         val values = ContentValues().apply {
             put(RestaurantTable.NAME, name)
-            put(RestaurantTable.CATEGORY_ID, categoryId)
+            put(RestaurantTable.CATEGORY, category)
         }
         return values
     }
@@ -17,13 +17,13 @@ data class Restaurant (var id: Long = -1, var name: String, var categoryId: Long
         fun fromCursor(cursor: Cursor): Restaurant {
             val colId = cursor.getColumnIndex(BaseColumns._ID)
             val colName = cursor.getColumnIndex(RestaurantTable.NAME)
-            val colCategoryId = cursor.getColumnIndex(RestaurantTable.CATEGORY_ID)
+            val colCategory = cursor.getColumnIndex(RestaurantTable.CATEGORY)
 
             val id = cursor.getLong(colId)
             val name = cursor.getString(colName)
-            val categoryId = cursor.getLong(colCategoryId)
+            val category = cursor.getString(colCategory)
 
-            return Restaurant(id, name, categoryId)
+            return Restaurant(id, name, category)
         }
     }
 }

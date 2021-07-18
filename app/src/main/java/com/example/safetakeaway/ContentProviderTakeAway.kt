@@ -97,23 +97,6 @@ class ContentProviderTakeAway : ContentProvider() {
                 null
             )
 
-            CATEGORY_URI -> CategoryTable(db).query(
-                projection as Array<String>,
-                selection,
-                selectionArgs as Array<String>?,
-                null,
-                null,
-                sortOrder
-            )
-
-            SPECIFIC_CATEGORY_URI -> CategoryTable(db).query(
-                projection as Array<String>,
-                "${BaseColumns._ID}=?",
-                arrayOf(uri.lastPathSegment!!),
-                null,
-                null,
-                null
-            )
             else -> null
         }
     }
@@ -128,8 +111,6 @@ class ContentProviderTakeAway : ContentProvider() {
             SPECIFIC_PLATES_URI -> "$SINGLE_ITEM/$PLATES"
             RESTAURANT_URI -> "$MULTIPLE_ITEMS/$RESTAURANT"
             SPECIFIC_RESTAURANT_URI -> "$SINGLE_ITEM/$RESTAURANT"
-            CATEGORY_URI -> "$MULTIPLE_ITEMS/$CATEGORY"
-            SPECIFIC_CATEGORY_URI -> "$SINGLE_ITEM/$CATEGORY"
             else -> null
         }
     }
@@ -142,7 +123,6 @@ class ContentProviderTakeAway : ContentProvider() {
             USER_URI -> UserTable(db).insert(values!!)
             PLATES_URI -> PlatesTable(db).insert(values!!)
             RESTAURANT_URI -> RestaurantTable(db).insert(values!!)
-            CATEGORY_URI -> CategoryTable(db).insert(values!!)
             else -> -1L
         }
 
@@ -173,11 +153,6 @@ class ContentProviderTakeAway : ContentProvider() {
             )
 
             SPECIFIC_RESTAURANT_URI -> RestaurantTable(db).delete(
-                "${BaseColumns._ID}=?",
-                arrayOf(uri.lastPathSegment!!)
-            )
-
-            SPECIFIC_CATEGORY_URI -> CategoryTable(db).delete(
                 "${BaseColumns._ID}=?",
                 arrayOf(uri.lastPathSegment!!)
             )
@@ -219,12 +194,6 @@ class ContentProviderTakeAway : ContentProvider() {
                 arrayOf(uri.lastPathSegment!!)
             )
 
-            SPECIFIC_CATEGORY_URI -> CategoryTable(db).update(
-                values!!,
-                "${BaseColumns._ID}=?",
-                arrayOf(uri.lastPathSegment!!)
-            )
-
             else -> 0
         }
     }
@@ -236,7 +205,6 @@ class ContentProviderTakeAway : ContentProvider() {
         private const val USER = "user"
         private const val PLATES = "plates"
         private const val RESTAURANT = "restaurant"
-        private const val CATEGORY = "category"
 
         private const val ORDER_URI = 100
         private const val SPECIFIC_ORDER_URI = 101
@@ -246,8 +214,6 @@ class ContentProviderTakeAway : ContentProvider() {
         private const val SPECIFIC_PLATES_URI = 401
         private const val RESTAURANT_URI = 50
         private const val SPECIFIC_RESTAURANT_URI = 501
-        private const val CATEGORY_URI = 600
-        private const val SPECIFIC_CATEGORY_URI = 601
 
         private const val MULTIPLE_ITEMS = "vnd.android.cursor.dir"
         private const val SINGLE_ITEM = "vnd.android.cursor.item"
@@ -258,7 +224,6 @@ class ContentProviderTakeAway : ContentProvider() {
         public val USER_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, USER)
         public val PLATES_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, PLATES)
         public val RESTAURANT_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, RESTAURANT)
-        public val CATEGORY_ADDRESS = Uri.withAppendedPath(BASE_ADDRESS, CATEGORY)
 
         private fun getUriMatcher() : UriMatcher {
             val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
@@ -271,8 +236,6 @@ class ContentProviderTakeAway : ContentProvider() {
             uriMatcher.addURI(AUTHORITY, "$PLATES/#", SPECIFIC_PLATES_URI)
             uriMatcher.addURI(AUTHORITY, RESTAURANT, RESTAURANT_URI)
             uriMatcher.addURI(AUTHORITY, "$RESTAURANT/#", SPECIFIC_RESTAURANT_URI)
-            uriMatcher.addURI(AUTHORITY, CATEGORY, CATEGORY_URI)
-            uriMatcher.addURI(AUTHORITY, "$CATEGORY/#", SPECIFIC_CATEGORY_URI)
 
             return uriMatcher
         }
