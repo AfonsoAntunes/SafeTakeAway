@@ -17,9 +17,4 @@
         android:icon="@android:drawable/ic_menu_delete"
         android:title="@string/delete_order_action"
         tools:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/settings_action"
-        android:title="@string/action_settings"
-        tools:orderInCategory="100"
-        tools:showAsAction="never" />
 </menu>

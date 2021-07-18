@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var menu: Menu
 
-    var atualMenu = R.menu.list_order_menu
+    var atualMenu = R.menu.main_menu
         set(value) {
             field = value
             invalidateOptionsMenu()
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         val successfulOption = when (item.itemId) {
-            R.id.settings_action -> {
+            R.id.about_action -> {
                 Toast.makeText(this, "Safe Take Away v. 1.0", Toast.LENGTH_LONG).show()
                 true
             }
