@@ -12,8 +12,19 @@
         tools:layout="@layout/main_fragment">
 
         <action
+            android:id="@+id/action_mainFragment_to_listRestaurantFragment"
+            app:destination="@id/listRestaurantFragment" />
+
+        <action
             android:id="@+id/action_mainFragment_to_listOrderFragment"
             app:destination="@id/listOrderFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listRestaurantFragment"
+        android:name="com.example.safetakeaway.ListRestaurantFragment"
+        android:label="@string/list_restaurant"
+        tools:layout="@layout/list_restaurant_fragment">
     </fragment>
 
     <fragment

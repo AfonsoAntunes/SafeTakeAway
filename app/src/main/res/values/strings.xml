@@ -6,10 +6,12 @@
 
         <!--Main Fragment-->
         <string name="main_fragment">Safe Take Away</string>
+        <string name="restaurant">Restaurant</string>
         <string name="order">Order</string>
         <string name="exit">Exit</string>
 
         <!--Nav Graph-->
+        <string name="list_restaurant">Restaurant List</string>
         <string name="list_order">Order List</string>
         <string name="edit_order">Edit Order</string>
         <string name="delete_order">Delete Order</string>
