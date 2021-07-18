@@ -43,8 +43,9 @@
         <string name="confirm_delete_order_action">Confirm</string>
         <string name="cancel_delete_order_action">Cancel</string>
 
-        <!--New Restaurant Fragment-->
+        <!--Restaurant Fragment-->
         <string name="Category">Category</string>
+        <string name="Restaurant">Restaurant</string>
 
         <!--Edit/Delete Order Fragment-->
         <string name="Date">Date</string>
