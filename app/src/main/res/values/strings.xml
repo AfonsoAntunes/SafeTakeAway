@@ -5,7 +5,7 @@
     <!-- Strings used for fragments for navigation -->
 
         <!--Main Fragment-->
-        <string name="safe_take_away">Safe Take Away</string>
+        <string name="main_fragment">Safe Take Away</string>
         <string name="order">Order</string>
         <string name="exit">Exit</string>
 
