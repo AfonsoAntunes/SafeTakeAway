@@ -16,6 +16,11 @@
         <string name="edit_order">Edit Order</string>
         <string name="delete_order">Delete Order</string>
 
+        <!--List Restaurant Menu-->
+        <string name="new_restaurant_action">New Restaurant</string>
+        <string name="edit_restaurant_action">Edit Restaurant</string>
+        <string name="delete_restaurant_action">Delete Restaurant</string>
+
         <!--List Order Menu-->
         <string name="new_order_action">New Order</string>
         <string name="edit_order_action">Edit Order</string>
@@ -45,4 +50,5 @@
         <!--Delete Operations-->
         <string name="error_delete_order">Error deleting Order</string>
         <string name="order_deleted_successfully">Order Deleted Successfully</string>
+
 </resources>
