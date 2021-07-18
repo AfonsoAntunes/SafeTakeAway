@@ -8,5 +8,6 @@ class AppData {
         lateinit var fragment: Fragment
 
         var selectedOrder : Order? = null
+        var selectedRestaurant : Restaurant? = null
     }
 }
