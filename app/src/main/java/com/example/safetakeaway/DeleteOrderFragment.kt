@@ -69,7 +69,7 @@ class DeleteOrderFragment : Fragment() {
         if (regists != 1) {
             Toast.makeText(
                 requireContext(),
-                R.string.error_delete_order,
+                R.string.error_to_delete,
                 Toast.LENGTH_LONG
             ).show()
             return
@@ -77,7 +77,7 @@ class DeleteOrderFragment : Fragment() {
 
         Toast.makeText(
             requireContext(),
-            R.string.order_deleted_successfully,
+            R.string.deleted_successfully,
             Toast.LENGTH_LONG
         ).show()
         browseListOrder()
@@ -85,8 +85,8 @@ class DeleteOrderFragment : Fragment() {
 
     fun processMenuOption(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.confirm_delete_order_action -> delete()
-            R.id.cancel_delete_order_action -> browseListOrder()
+            R.id.delete_action -> delete()
+            R.id.cancel_action -> browseListOrder()
             else -> return false
         }
 

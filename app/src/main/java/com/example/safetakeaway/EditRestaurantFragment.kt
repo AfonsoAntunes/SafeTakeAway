@@ -76,7 +76,7 @@ class EditRestaurantFragment : Fragment() {
         if (regists != 1) {
             Toast.makeText(
                 requireContext(),
-                R.string.error_edit_restaurant,
+                R.string.error_to_edit,
                 Toast.LENGTH_LONG
             ).show()
             return
@@ -84,7 +84,7 @@ class EditRestaurantFragment : Fragment() {
 
         Toast.makeText(
             requireContext(),
-            R.string.order_edited_successfully,
+            R.string.edited_successfully,
             Toast.LENGTH_LONG
         ).show()
         browseListRestaurant()

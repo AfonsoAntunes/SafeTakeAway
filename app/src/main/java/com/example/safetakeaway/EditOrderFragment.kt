@@ -57,7 +57,7 @@ class EditOrderFragment : Fragment() {
     fun save() {
         val paymentMethod = editTextPaymentMethod.text.toString()
         if (paymentMethod.isEmpty()) {
-            editTextPaymentMethod.error = getString(R.string.fill_payment_method)
+            editTextPaymentMethod.error = getString(R.string.fill_this_field)
             editTextPaymentMethod.requestFocus()
             return
         }
@@ -80,7 +80,7 @@ class EditOrderFragment : Fragment() {
         if (regists != 1) {
             Toast.makeText(
                 requireContext(),
-                R.string.error_edit_order,
+                R.string.error_to_edit,
                 Toast.LENGTH_LONG
             ).show()
             return
@@ -88,7 +88,7 @@ class EditOrderFragment : Fragment() {
 
         Toast.makeText(
             requireContext(),
-            R.string.order_edited_successfully,
+            R.string.edited_successfully,
             Toast.LENGTH_LONG
         ).show()
         browseListOrder()
@@ -96,8 +96,8 @@ class EditOrderFragment : Fragment() {
 
     fun processMenuOption(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.save_edit_order_action -> save()
-            R.id.cancel_edit_order_action -> browseListOrder()
+            R.id.save_edit_action -> save()
+            R.id.cancel_action -> browseListOrder()
             else -> return false
         }
 

@@ -56,7 +56,7 @@ class DeleteRestaurantFragment : Fragment() {
         if (regists != 1) {
             Toast.makeText(
                 requireContext(),
-                R.string.error_delete_restaurant,
+                R.string.error_to_delete,
                 Toast.LENGTH_LONG
             ).show()
             return
@@ -64,7 +64,7 @@ class DeleteRestaurantFragment : Fragment() {
 
         Toast.makeText(
             requireContext(),
-            R.string.restaurant_deleted_successfully,
+            R.string.deleted_successfully,
             Toast.LENGTH_LONG
         ).show()
         browseListRestaurant()
@@ -72,8 +72,8 @@ class DeleteRestaurantFragment : Fragment() {
 
     fun processMenuOption(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.confirm_delete_restaurant_action -> delete()
-            R.id.cancel_delete_restaurant_action -> browseListRestaurant()
+            R.id.delete_action -> delete()
+            R.id.cancel_action -> browseListRestaurant()
             else -> return false
         }
 

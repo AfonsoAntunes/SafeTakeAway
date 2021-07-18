@@ -79,7 +79,7 @@ class NewRestaurantFragment : Fragment() {
         if (uri == null) {
             Snackbar.make(
                 editTextRestaurant,
-                getString(R.string.error_new_restaurant),
+                getString(R.string.error_to_create),
                 Snackbar.LENGTH_LONG
             ).show()
             return
@@ -87,7 +87,7 @@ class NewRestaurantFragment : Fragment() {
 
         Toast.makeText(
             requireContext(),
-            R.string.restaurant_created_successfully,
+            R.string.created_successfully,
             Toast.LENGTH_LONG
         ).show()
         browseListRestaurant()
@@ -95,8 +95,8 @@ class NewRestaurantFragment : Fragment() {
 
     fun processMenuOption(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.create_new_restaurant_action -> create()
-            R.id.cancel_new_restaurant_action -> browseListRestaurant()
+            R.id.create_action -> create()
+            R.id.cancel_action -> browseListRestaurant()
             else -> return false
         }
 

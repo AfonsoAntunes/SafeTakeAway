@@ -5,11 +5,11 @@
     <item
         android:id="@+id/save_edit_restaurant_action"
         android:icon="@android:drawable/ic_menu_save"
-        android:title="@string/save_edited_restaurant_action"
+        android:title="@string/save_edited_action"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/cancel_edit_restaurant_action"
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
-        android:title="@string/cancel_edited_restaurant_action"
+        android:title="@string/cancel_action"
         app:showAsAction="ifRoom" />
 </menu>
