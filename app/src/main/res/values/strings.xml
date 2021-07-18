@@ -26,6 +26,10 @@
         <string name="create_new_restaurant_action">Create Restaurant</string>
         <string name="cancel_new_restaurant_action">Cancel</string>
 
+        <!--Edit Restaurant Menu-->
+        <string name="save_edited_restaurant_action">Save Edited Restaurant</string>
+        <string name="cancel_edited_restaurant_action">Cancel Edited Restaurant</string>
+
         <!--List Order Menu-->
         <string name="new_order_action">New Order</string>
         <string name="edit_order_action">Edit Order</string>
