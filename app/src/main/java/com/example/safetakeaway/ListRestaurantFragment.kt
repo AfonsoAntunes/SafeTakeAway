@@ -56,10 +56,15 @@ class ListRestaurantFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
         findNavController().navigate(R.id.action_listRestaurantFragment_to_editRestaurantFragment)
     }
 
+    fun browseDeleteRestaurant() {
+        findNavController().navigate(R.id.action_listRestaurantFragment_to_deleteRestaurantFragment)
+    }
+
     fun processMenuOption(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.new_restaurant_action -> browseNewRestaurant()
             R.id.edit_restaurant_action -> browseEditRestaurant()
+            R.id.delete_restaurant_action -> browseDeleteRestaurant()
             else -> return false
         }
         return true

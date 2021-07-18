@@ -71,6 +71,8 @@
         <string name="order_edited_successfully">Order edited successfully</string>
 
         <!--Delete Operations-->
+        <string name="error_delete_restaurant">Error to delete Restaurant</string>
+        <string name="restaurant_deleted_successfully">Restaurant Deleted Successfully</string>
         <string name="error_delete_order">Error deleting Order</string>
         <string name="order_deleted_successfully">Order Deleted Successfully</string>
 </resources>

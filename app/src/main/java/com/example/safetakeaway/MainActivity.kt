@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                 R.menu.list_restaurant_menu -> (AppData.fragment as ListRestaurantFragment).processMenuOption(item)
                 R.menu.new_restaurant_menu -> (AppData.fragment as NewRestaurantFragment).processMenuOption(item)
                 R.menu.edit_restaurant_menu -> (AppData.fragment as EditRestaurantFragment).processMenuOption(item)
+                R.menu.delete_restaurant_menu -> (AppData.fragment as DeleteRestaurantFragment).processMenuOption(item)
                 R.menu.list_order_menu -> (AppData.fragment as ListOrderFragment).processMenuOption(item)
                 R.menu.edit_order_menu -> (AppData.fragment as EditOrderFragment).processMenuOption(item)
                 R.menu.delete_order_menu -> (AppData.fragment as DeleteOrderFragment).processMenuOption(item)
