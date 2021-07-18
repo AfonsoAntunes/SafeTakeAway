@@ -23,7 +23,6 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         AppData.fragment = this
-        (activity as MainActivity).atualMenu = R.menu.main_menu
 
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -31,6 +30,10 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonRestaurant.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_listRestaurantFragment)
+        }
 
         binding.buttonOrder.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_listOrderFragment)
