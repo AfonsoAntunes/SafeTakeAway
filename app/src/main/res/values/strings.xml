@@ -50,6 +50,11 @@
         <string name="totalPrice">Total Price</string>
         <string name="PaymentMethod">Payment Method</string>
 
+        <!--Create Operations-->
+        <string name="fill_this_field">Please, fill this field</string>
+        <string name="error_new_restaurant">Error to create restaurant</string>
+        <string name="restaurant_created_successfully">Restaurant Created Successfully</string>
+
         <!--Edit Operations-->
         <string name="fill_payment_method">Please, fill the Payment Method</string>
         <string name="error_edit_order">Error to edit order</string>
@@ -58,9 +63,5 @@
         <!--Delete Operations-->
         <string name="error_delete_order">Error deleting Order</string>
         <string name="order_deleted_successfully">Order Deleted Successfully</string>
-
-    <string name="fill_this_field">Please, fill this field</string>
-    <string name="error_new_restaurant">Error to create restaurant</string>
-    <string name="restaurant_created_successfully">Restaurant Created Successfully</string>
 
 </resources>
