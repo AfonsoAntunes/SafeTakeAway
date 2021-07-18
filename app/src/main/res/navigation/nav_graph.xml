@@ -25,6 +25,9 @@
         android:name="com.example.safetakeaway.ListRestaurantFragment"
         android:label="@string/list_restaurant"
         tools:layout="@layout/list_restaurant_fragment">
+        <action
+            android:id="@+id/action_listRestaurantFragment_to_MainFragment"
+            app:destination="@id/MainFragment" />
     </fragment>
 
     <fragment
@@ -40,6 +43,9 @@
         <action
             android:id="@+id/action_listOrderFragment_to_deleteOrderFragment"
             app:destination="@id/deleteOrderFragment" />
+        <action
+            android:id="@+id/action_listOrderFragment_to_MainFragment"
+            app:destination="@id/MainFragment" />
     </fragment>
 
     <fragment
