@@ -41,6 +41,7 @@ class AdapterRestaurant : RecyclerView.Adapter<ViewHolderRestaurant>() {
             selected = this
             itemView.setBackgroundResource(R.color.select_color)
             AppData.selectedRestaurant = restaurant
+            AppData.activity.updateMenuListRestaurant(true)
         }
 
         private fun desSelected() {

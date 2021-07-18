@@ -45,6 +45,8 @@ class MainActivity : AppCompatActivity() {
 
         if (atualMenu == R.menu.list_order_menu) {
             updateMenuListOrder(false)
+        } else if (atualMenu == R.menu.list_restaurant_menu) {
+            updateMenuListRestaurant(false)
         }
         return true
     }
@@ -75,6 +77,11 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    fun updateMenuListRestaurant(seeButtonsEditDelete : Boolean) {
+        menu.findItem(R.id.edit_restaurant_action).setVisible(seeButtonsEditDelete)
+        menu.findItem(R.id.delete_restaurant_action).setVisible(seeButtonsEditDelete)
     }
 
     fun updateMenuListOrder(seeButtonsEditDelete : Boolean) {
