@@ -3,12 +3,14 @@ package com.example.safetakeaway
 import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safetakeaway.databinding.ListPlatesFragmentBinding
@@ -42,6 +44,18 @@ class ListPlatesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         recycleViewPlates.layoutManager = LinearLayoutManager(requireContext())
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_MANAGER_PLATES, null, this)
+    }
+
+    fun browseEditPlates() {
+        findNavController().navigate(R.id.action_listPlatesFragment_to_editPlatesFragment)
+    }
+
+    fun processMenuOption(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.edit_plates_action -> browseEditPlates()
+            else -> return false
+        }
+        return true
     }
 
     override fun onDestroyView() {

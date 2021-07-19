@@ -76,6 +76,18 @@
         <action
             android:id="@+id/action_listPlatesFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_listPlatesFragment_to_editPlatesFragment"
+            app:destination="@id/editPlatesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editPlatesFragment"
+        android:name="com.example.safetakeaway.EditPlatesFragment"
+        android:label="EditPlatesFragment" >
+        <action
+            android:id="@+id/action_editPlatesFragment_to_listPlatesFragment"
+            app:destination="@id/listPlatesFragment" />
     </fragment>
 
     <fragment

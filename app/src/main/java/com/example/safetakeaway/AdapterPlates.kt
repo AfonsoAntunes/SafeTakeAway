@@ -49,6 +49,7 @@ class AdapterPlates : RecyclerView.Adapter<ViewHolderPlates>() {
             selected = this
             itemView.setBackgroundResource(R.color.select_color)
             AppData.selectedPlates = plates
+            AppData.activity.updateMenuListPlates(true)
         }
 
         private fun desSelected() {
