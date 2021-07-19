@@ -9,5 +9,6 @@ class AppData {
 
         var selectedOrder : Order? = null
         var selectedRestaurant : Restaurant? = null
+        var selectedPlates : Plates? = null
     }
 }
