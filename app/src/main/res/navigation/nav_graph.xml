@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/MainFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/MainFragment"
+        android:id="@+id/mainFragment"
         android:name="com.example.safetakeaway.MainFragment"
         android:label="@string/main_fragment"
         tools:layout="@layout/main_fragment">
@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_mainFragment_to_listOrderFragment"
             app:destination="@id/listOrderFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_listPlatesFragment"
+            app:destination="@id/listPlatesFragment" />
     </fragment>
 
     <fragment
@@ -26,8 +29,8 @@
         android:label="@string/list_restaurant"
         tools:layout="@layout/list_restaurant_fragment">
         <action
-            android:id="@+id/action_listRestaurantFragment_to_MainFragment"
-            app:destination="@id/MainFragment" />
+            android:id="@+id/action_listRestaurantFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
         <action
             android:id="@+id/action_listRestaurantFragment_to_newRestaurantFragment"
             app:destination="@id/newRestaurantFragment" />
@@ -49,6 +52,33 @@
     </fragment>
 
     <fragment
+        android:id="@+id/editRestaurantFragment"
+        android:name="com.example.safetakeaway.EditRestaurantFragment"
+        android:label="@string/edit_restaurant" >
+        <action
+            android:id="@+id/action_editRestaurantFragment_to_listRestaurantFragment"
+            app:destination="@id/listRestaurantFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/deleteRestaurantFragment"
+        android:name="com.example.safetakeaway.DeleteRestaurantFragment"
+        android:label="@string/delete_restaurant" >
+        <action
+            android:id="@+id/action_deleteRestaurantFragment_to_listRestaurantFragment"
+            app:destination="@id/listRestaurantFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listPlatesFragment"
+        android:name="com.example.safetakeaway.ListPlatesFragment"
+        android:label="@string/list_plates" >
+        <action
+            android:id="@+id/action_listPlatesFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/listOrderFragment"
         android:name="com.example.safetakeaway.ListOrderFragment"
         android:label="@string/list_order"
@@ -57,13 +87,12 @@
         <action
             android:id="@+id/action_listOrderFragment_to_editOrderFragment"
             app:destination="@id/editOrderFragment" />
-
         <action
             android:id="@+id/action_listOrderFragment_to_deleteOrderFragment"
             app:destination="@id/deleteOrderFragment" />
         <action
-            android:id="@+id/action_listOrderFragment_to_MainFragment"
-            app:destination="@id/MainFragment" />
+            android:id="@+id/action_listOrderFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 
     <fragment
@@ -86,21 +115,5 @@
         <action
             android:id="@+id/action_deleteOrderFragment_to_listOrderFragment"
             app:destination="@id/listOrderFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editRestaurantFragment"
-        android:name="com.example.safetakeaway.EditRestaurantFragment"
-        android:label="EditRestaurantFragment" >
-        <action
-            android:id="@+id/action_editRestaurantFragment_to_listRestaurantFragment"
-            app:destination="@id/listRestaurantFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/deleteRestaurantFragment"
-        android:name="com.example.safetakeaway.DeleteRestaurantFragment"
-        android:label="DeleteRestaurantFragment" >
-        <action
-            android:id="@+id/action_deleteRestaurantFragment_to_listRestaurantFragment"
-            app:destination="@id/listRestaurantFragment" />
     </fragment>
 </navigation>
