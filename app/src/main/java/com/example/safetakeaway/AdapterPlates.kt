@@ -30,7 +30,7 @@ class AdapterPlates : RecyclerView.Adapter<ViewHolderPlates>() {
         fun updatePlates(plates: Plates) {
             this.plates = plates
 
-            val name = plates.name.toString()
+            val name = plates.name
             val price = plates.price.toString()
             val restaurantId = plates.restaurantId.toString()
 

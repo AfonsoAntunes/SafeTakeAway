@@ -52,7 +52,7 @@ class ListPlatesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     fun processMenuOption(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.edit_plates_action -> browseEditPlates()
+            R.id.delete_plates_action -> browseEditPlates()
             else -> return false
         }
         return true

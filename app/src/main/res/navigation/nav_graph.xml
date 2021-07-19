@@ -84,7 +84,7 @@
     <fragment
         android:id="@+id/editPlatesFragment"
         android:name="com.example.safetakeaway.EditPlatesFragment"
-        android:label="EditPlatesFragment" >
+        android:label="@string/edit_plates" >
         <action
             android:id="@+id/action_editPlatesFragment_to_listPlatesFragment"
             app:destination="@id/listPlatesFragment" />

@@ -13,9 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
 class EditPlatesFragment : Fragment() {
+    private lateinit var textViewRestaurantID: TextView
     private lateinit var editTextName: EditText
     private lateinit var editTextCategory: EditText
-    private lateinit var editTextPrice: TextView
+    private lateinit var textViewPrice: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,14 +32,17 @@ class EditPlatesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        textViewRestaurantID = view.findViewById(R.id.textViewRestaurantID)
         editTextName = view.findViewById(R.id.editTextName)
         editTextCategory = view.findViewById(R.id.editTextCategory)
-        editTextPrice = view.findViewById(R.id.textViewPrice)
+        textViewPrice = view.findViewById(R.id.textViewPrice)
+
 
         val plates = AppData.selectedPlates!!
+        textViewRestaurantID.text = plates.restaurantId.toString()
         editTextName.setText(plates.name)
         editTextCategory.setText(plates.category)
-        editTextPrice.text = plates.price.toString()
+        textViewPrice.text = plates.price.toString()
     }
 
     fun browseListPlates() {
