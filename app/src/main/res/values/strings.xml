@@ -21,9 +21,15 @@
     <string name="edit_order">Edit Order</string>
     <string name="delete_order">Delete Order</string>
 
+    <!--Restaurant and Plates Fragment-->
+    <string name="Category">Category</string>
+
     <!--Restaurant Fragment-->
     <string name="Restaurant">Restaurant</string>
-    <string name="Category">Category</string>
+
+    <!--Restaurant Fragment-->
+    <string name="Name">Name</string>
+    <string name="Price">Price</string>
 
     <!--Order Fragment-->
     <string name="Date">Date</string>
