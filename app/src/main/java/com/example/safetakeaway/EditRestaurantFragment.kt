@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
 class EditRestaurantFragment : Fragment() {
-    private lateinit var editTextRestaurant: TextView
-    private lateinit var editTextCategory: TextView
+    private lateinit var editTextRestaurant: EditText
+    private lateinit var editTextCategory: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +34,8 @@ class EditRestaurantFragment : Fragment() {
         editTextCategory = view.findViewById(R.id.editTextCategory)
 
         val restaurant = AppData.selectedRestaurant!!
-        editTextRestaurant.text = restaurant.name
-        editTextCategory.text = restaurant.category
+        editTextRestaurant.setText(restaurant.name)
+        editTextCategory.setText(restaurant.category)
     }
 
     fun browseListRestaurant() {
@@ -92,8 +92,8 @@ class EditRestaurantFragment : Fragment() {
 
     fun processMenuOption(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.save_edit_restaurant_action -> save()
-            R.id.cancel_edit_restaurant_action -> browseListRestaurant()
+            R.id.save_edit_action -> save()
+            R.id.cancel_action -> browseListRestaurant()
             else -> return false
         }
 
