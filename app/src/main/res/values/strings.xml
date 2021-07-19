@@ -18,6 +18,7 @@
     <string name="delete_restaurant">Delete Restaurant</string>
     <string name="list_plates">Plates List</string>
     <string name="edit_plates">Edit Plate</string>
+    <string name="delete_plates">Delete Plate</string>
     <string name="list_order">Order List</string>
     <string name="edit_order">Edit Order</string>
     <string name="delete_order">Delete Order</string>

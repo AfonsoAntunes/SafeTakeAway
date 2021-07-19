@@ -94,6 +94,15 @@
     </fragment>
 
     <fragment
+        android:id="@+id/deletePlatesFragment"
+        android:name="com.example.safetakeaway.DeletePlatesFragment"
+        android:label="@string/delete_plates" >
+        <action
+            android:id="@+id/action_deletePlatesFragment_to_listPlatesFragment"
+            app:destination="@id/listPlatesFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/listOrderFragment"
         android:name="com.example.safetakeaway.ListOrderFragment"
         android:label="@string/list_order"
@@ -130,13 +139,5 @@
         <action
             android:id="@+id/action_deleteOrderFragment_to_listOrderFragment"
             app:destination="@id/listOrderFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/deletePlatesFragment"
-        android:name="com.example.safetakeaway.DeletePlatesFragment"
-        android:label="DeletePlatesFragment" >
-        <action
-            android:id="@+id/action_deletePlatesFragment_to_listPlatesFragment"
-            app:destination="@id/listPlatesFragment" />
     </fragment>
 </navigation>

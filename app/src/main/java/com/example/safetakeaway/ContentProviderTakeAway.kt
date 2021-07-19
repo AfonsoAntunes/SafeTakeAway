@@ -212,7 +212,7 @@ class ContentProviderTakeAway : ContentProvider() {
         private const val SPECIFIC_USER_URI = 201
         private const val PLATES_URI = 400
         private const val SPECIFIC_PLATES_URI = 401
-        private const val RESTAURANT_URI = 50
+        private const val RESTAURANT_URI = 500
         private const val SPECIFIC_RESTAURANT_URI = 501
 
         private const val MULTIPLE_ITEMS = "vnd.android.cursor.dir"
