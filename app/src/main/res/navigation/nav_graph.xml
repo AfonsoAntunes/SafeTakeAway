@@ -79,6 +79,9 @@
         <action
             android:id="@+id/action_listPlatesFragment_to_editPlatesFragment"
             app:destination="@id/editPlatesFragment" />
+        <action
+            android:id="@+id/action_listPlatesFragment_to_deletePlatesFragment"
+            app:destination="@id/deletePlatesFragment" />
     </fragment>
 
     <fragment
@@ -127,5 +130,13 @@
         <action
             android:id="@+id/action_deleteOrderFragment_to_listOrderFragment"
             app:destination="@id/listOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deletePlatesFragment"
+        android:name="com.example.safetakeaway.DeletePlatesFragment"
+        android:label="DeletePlatesFragment" >
+        <action
+            android:id="@+id/action_deletePlatesFragment_to_listPlatesFragment"
+            app:destination="@id/listPlatesFragment" />
     </fragment>
 </navigation>

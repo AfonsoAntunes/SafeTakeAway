@@ -50,9 +50,14 @@ class ListPlatesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         findNavController().navigate(R.id.action_listPlatesFragment_to_editPlatesFragment)
     }
 
+    fun browseDeletePlates() {
+        findNavController().navigate(R.id.action_listPlatesFragment_to_deletePlatesFragment)
+    }
+
     fun processMenuOption(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.delete_plates_action -> browseEditPlates()
+            R.id.edit_plates_action -> browseEditPlates()
+            R.id.delete_plates_action -> browseDeletePlates()
             else -> return false
         }
         return true
