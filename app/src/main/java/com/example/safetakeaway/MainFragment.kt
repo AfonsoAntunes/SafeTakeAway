@@ -35,6 +35,10 @@ class MainFragment : Fragment() {
             findNavController().navigate(R.id.action_mainFragment_to_listRestaurantFragment)
         }
 
+        binding.buttonPlates.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_listPlatesFragment)
+        }
+
         binding.buttonOrder.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_listOrderFragment)
         }
